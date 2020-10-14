@@ -9,12 +9,12 @@
     define('SESSION_ID_LENGHT',40);
 	define('SESSION_COOKIE_EXPIRE',43200);*/
 	
-	if(isset($_POST['Weight'])) CompleteProfil($Connect, $_POST['Weight'], $_POST['Height']);
-	
 	
 	if(isset($_SESSION['HH_Logged'])){
 		$UserID = $_SESSION['HH_ID'];
 		$UserName = $_SESSION['HH_User'];
+
+		if(isset($_POST['Weight'])) CompleteProfil($Connect, $UserID, $_POST['Weight'], $_POST['Height']);
 
 
 		$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
