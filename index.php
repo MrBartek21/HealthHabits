@@ -26,7 +26,7 @@
 	}else{
 		//$Lang = Lang('notLogged', 0, 0);
 		//require_once("Lang/$Lang.php");
-	    //header('Location: login.php');
+	    header('Location: login.php');
 	}
 ?>
 
