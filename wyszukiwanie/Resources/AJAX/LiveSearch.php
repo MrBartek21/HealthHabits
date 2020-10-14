@@ -17,7 +17,7 @@
 		                <div class="row">
                             <input type="number" class="form-control" id="" placeholder="H" name="h" min="0" max="24">
                             <input type="number" class="form-control" id="" placeholder="MIN" name="min" min="0" max="60">
-                            <button type="submit" class="btn btn-secondary" onclick="dodaj('.$Name.')">Dodaj</button>
+                            <button type="submit" class="btn btn-secondary" onclick="dodaj()">Dodaj</button>
                         </div>
                     </div>
 		            ';
