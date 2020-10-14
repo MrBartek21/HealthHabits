@@ -5,7 +5,7 @@
     <body id="page-top">
 
 
-        <li class="nav-item text-uppercase nav-link dropdown-toggle pointer font-nav" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zawodnicy</li>
+        <li class="nav-item text-uppercase nav-link dropdown-toggle pointer font-nav" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aktywności</li>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
 								<form class="px-4 py-2">
 								<input type="search" class="form-control search" placeholder="Wyszukaj..." autofocus="autofocus"  onkeyup="showResult(this.value)">

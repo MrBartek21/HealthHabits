@@ -2,48 +2,36 @@
 	session_start();
 	include("../Core/Connect.php");
 	
+	
 	$Querry = $_GET['q'];
-	$Querry = strtolower($Querry);
-	$Querry = explode(" ", $Querry);
-	$QuerryName = $Querry[0];
-	$QuerrySurname = $Querry[1];
-	
-	$i = 1;
-	
-	$sth = mysqli_query($connect, "SELECT * FROM players WHERE Name Like '$QuerryName%' AND Surname Like '$QuerrySurname%' AND Type=0");
+
+	$sth = mysqli_query($Connect_HH, "SELECT * FROM activity_met WHERE Name Like '$Querry%' ");
 	while($row=mysqli_fetch_assoc($sth)){
-		$UserID = $row['ID'];
 		
-		$UserName = $row['Name'];
-		$UserSurname = $row['Surname'];
-		$UserClub = $row['Club'];
-		
-		if($i%2==0) $color = 'muted';
-		else $color = 'light';
-		
-		$Name = $UserName.' '.$UserSurname;
-		
-		$NameTemp = $UserName.$UserSurname;
-		$QuerryTemp = $QuerryName.$QuerrySurname;
-		
-		$NameTemp = strtolower($NameTemp);
-		$QuerryTemp = strtolower($QuerryTemp);
-		
-		if(strpos($NameTemp, $QuerryTemp) !== false){
-			$NameLen = strlen($Name);
-			$QuerryTempLen = strlen($QuerryTemp);
-			
-			$WordB = substr($Name,0,$QuerryTempLen);
-			$Words = substr($Name, $QuerryTempLen,$NameLen);
-			
-			$Name = '<B>'.$WordB.'</B>'.$Words;
-		}
-		
-		$Result .= '<a href="view.php?Name='.$UserName.'&ID='.$UserID.'" class="dropdown-item font-livesearch bg-'.$color.'">'.$Name.' - '.$UserClub.'</a>';
-		
-		$i++;
+		$Name = $row['Name'];
+
+		$Result .= '<a class="dropdown-item">'.$Name.'</a><br>
+		            
+		            <div class="form-group mb-3">
+		            <small id="podpowiedz" class="form-text text-muted col-sm-2" style="font-size:10">Podaj czas:</small>
+		                <div class="row">
+                            <input type="number" class="form-control" id="" placeholder="H" name="h" min="0" max="24">
+                            <input type="number" class="form-control" id="" placeholder="MIN" name="min" min="0" max="60">
+                            <button type="submit" class="btn btn-secondary" onclick="dodaj()">Dodaj</button>
+                        </div>
+                    </div>
+		            ';
+		$h = $_GET['h'];
+		$min = $_GET['min'];
 	}
 	
-	if($Result=="") echo '<input type="button" class="dropdown-item bg-light" type="button" value="Nie znaleziono takiego zawodnika"/>';
+	if($Result=="") echo '<input type="button" class="dropdown-item" type="button" value="Nie znaleziono takiej aktywności"/>';
 	else echo $Result;
 ?>
+<script>
+    function dodaj(){
+        //$Connect->query("INSERT INTO game VALUES (NULL, '$Code', now(), '0', '5', '10', '$QuestionID')");
+        alert();
+        console.log('wykonano2');
+    }
+</script>

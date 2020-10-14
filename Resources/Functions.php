@@ -23,7 +23,8 @@
     }
 
     function login($Connect, $Login, $Pass){
-		mysqli_report(MYSQLI_REPORT_STRICT);
+        mysqli_report(MYSQLI_REPORT_STRICT);
+        include("Resources/Subtitles.php");
 		
 		try{
 			if($Connect->connect_errno!=0){
@@ -51,11 +52,11 @@
 							
 							header('Location: index.php');
 						}else{
-							$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Hasło złe</div>';
+							$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_password'].'</div>';
 							header('Location: login.php');
 						}
 					}else{
-						$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Login zły</div>';
+						$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_login'].'</div>';
 						header('Location: login.php');
 					}
 				}else{
@@ -64,14 +65,14 @@
 				$Connect->close();
 			}
 		}catch(Exception $e){
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_Error1.'</div>';
-			$_SESSION['error'] .= '<div class="alert alert-danger text-center" role="alert">'.$Lang_Error2.' '.$e.'</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['error1'].'</div>';
+			$_SESSION['error'] .= '<div class="alert alert-danger text-center" role="alert">'.$SB['error2'].' '.$e.'</div>';
 		}
 	}
 	
 	function register($Connect, $Login, $Email, $Pass1, $Pass2){
 		mysqli_report(MYSQLI_REPORT_STRICT);
-		//include("Lang/$Lang.php");
+		include("resources/Subtitles.php");
 		include("Resources/Config.php");
 		
 		
@@ -79,12 +80,12 @@
         //Sprawdzenie długości nicka
         if((strlen($Login)<3) || (strlen($Login)>20)){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Niepoprawny login</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_login_len'].'</div>';
         }
         
         if(ctype_alnum($Login)==false){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Niepoprawny login</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_login_format'].'</div>';
         }
         
         // Sprawdź poprawność adresu email
@@ -92,18 +93,18 @@
         
         if((filter_var($Email2, FILTER_VALIDATE_EMAIL)==false) || ($Email2!=$Email)){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Niepoprawny email</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_email'].'</div>';
         }
         
         //Sprawdź poprawność hasła
         if((strlen($Pass1)<8) || (strlen($Pass1)>20)){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Hasło długośc</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_password_len'].'</div>';
         }
         
         if($Pass1!=$Pass2){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Nie takie same hasła </div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['wrong_password_repeat'].'</div>';
         }
         
         $Pass_Hash = password_hash($Pass1, PASSWORD_DEFAULT);
@@ -119,7 +120,7 @@
                 $count = $rezult->num_rows;
                 if($count>0){
                     $OK = false;
-					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">jest taki email</div>';
+					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['email_exist'].'</div>';
                 }
                 
                 //Czy login jest już zarezerwowany?
@@ -130,14 +131,14 @@
                 $count = $rezult->num_rows;
                 if($count>0){
                     $OK = false;
-					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">login zarezerwowany</div>';
+					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['login_exist'].'</div>';
                 }
                 
                 if($OK==true){
                     $IP = $_SERVER['REMOTE_ADDR'];
                     
                     if($Connect->query("INSERT INTO users VALUES (NULL, '$Login', '$Pass_Hash', '$Email', '$IP', now(), 0)")){
-						$_SESSION['error'] = '<div class="alert alert-success text-center" role="alert">Zarejestrowano pomyślnie</div>';
+						$_SESSION['error'] = '<div class="alert alert-success text-center" role="alert">'.$SB['success_register'].'</div>';
                         $_SESSION['Registered'] = true;
                         header('Location: index.php');
                     }else{
@@ -147,8 +148,8 @@
                 $Connect->close();
             }
         }catch(Exception $e){
-            $_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_Error1.'</div>';
-			$_SESSION['error'] .= '<div class="alert alert-danger text-center" role="alert">'.$Lang_Error2.' '.$e.'</div>';
+            $_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['error1'].'</div>';
+			$_SESSION['error'] .= '<div class="alert alert-danger text-center" role="alert">'.$SB['error2'].' '.$e.'</div>';
         }
 	}
 ?>

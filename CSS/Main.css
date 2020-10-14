@@ -1,9 +1,27 @@
 body{
 	padding-top: 70px;
 	padding-bottom: 70px;
-    color: #424242;
+	color: #424242;
+	background-color: var(--c-green);
 	
 	font-family: 'Nunito', sans-serif !important;
+}
+
+.bg-navbar{background-color: #6e9f7f;}
+.bg-form{background-color: #8cbd9d;}
+
+.form-100{
+	margin-bottom: 20px;
+	width: 100% !important;
+}
+
+.btn-form{
+	width: 100% !important;
+	background-color: #6e9f7f;
+}
+
+.btn-form:hover{
+	background-color: #4c7d5d;
 }
 
 .card{
@@ -35,4 +53,4 @@ body{
 	transition: 0.3s;
 }
 
-.closebtn:hover{ color: black;}
+.closebtn:hover{color: black;}

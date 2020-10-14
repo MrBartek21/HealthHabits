@@ -1,7 +1,10 @@
 <?php
+    function Update($Col, $Value){
+        echo 'Update';
+    }
     function min_watter($weight){
         $min_watter = 30*$weight;
-    
+        Update('Min_Watter', $min_watter);
         //echo $min_watter;
     }
     function BMI($weight, $wzrost){
@@ -30,11 +33,24 @@
         }else{
             $LBM = 1.1 * $weight - 128*pow(($weight/$wzrost),2);
         }
+        Update('LBM', $LBM);
         return $LBM;
     }
     function PPM($LBM){
         $PPM = 500 + (22*$LBM);
+        Update('PPM', $PPM);
         return $PPM;
+    }
+    function CPM($PPM){
+        $Kactivity  = 500;
+        $CPM = $PPM + $Kactivity;
+        Update('CPM', $CPM);
+        return $CPM;
+    }
+    function PAL($PPM, $CPM){
+        $PAL = $CPM / $PPM;
+        Update('PAL', $PAL);
+        echo $PAL;   
     }
     $weight=75;
     $wzrost = 179;
@@ -50,8 +66,8 @@
     echo '<br />';
     $LBM = LBM($weight, $wzrost, $Sex);
     $PPM = PPM($LBM);
-    
-    
+    $CPM = CPM($PPM);
+    PAL($PPM, $CPM);
     
     
     

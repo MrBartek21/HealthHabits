@@ -1,17 +1,10 @@
 <?php
-	$host = "localhost";
-	$db_user = "mysqladmin";
-	$db_password = "mysqladmin";
+	$Host = "localhost";
+	$DB_User = "mysqladmin";
+	$DB_Password = "mysqladmin";
 	
-	$db_name = "losso";
+	$DB_Name_HH = 'p_healthhabbits';
 	
-	$_SESSION['db_host'] = $host;
-	$_SESSION['db_user'] = $db_user;
-	$_SESSION['db_password'] = $db_password;
-	
-	$_SESSION['db_name_main'] = $db_name;
-	
-	
-	$connect = @new mysqli($host, $db_user, $db_password, $db_name);
-	$connect->set_charset("utf-8");
+	$Connect_HH = @new mysqli($Host, $DB_User, $DB_Password, $DB_Name_HH);
+    $Connect_HH->set_charset("utf-8");
 ?>
