@@ -1,5 +1,6 @@
 <?php
 	$Host = "localhost";
+	$Host = "classicgames.sytes.net";
 	$DB_User = "mysqladmin";
 	$DB_Password = "mysqladmin";
 	$DB_Name = "p_healthhabbits";

@@ -1,9 +1,18 @@
 <?php
-    function GenerateColor($hex, $steps, $style){
-        $color = adjustBrightness($hex, $steps);
-        $return = 'style="background-color: #'.$color.';'.$style.'"';
-        
-        echo $return;
+    function BMI($Weight, $Height){
+        $BMI = $Weight/pow(($Height/100), 2);
+        if($BMI<18.5) $pkt=0.5;
+        else if($BMI>=18.5 && $BMI<=24.9) $pkt=10;
+        else if($BMI>24.9 && $BMI<=29.9) $pkt=1;
+        else if($BMI>29.9 && $BMI<=39.9) $pkt=0.5;
+        else $pkt=0.1;
+
+        return $pkt;
+    }
+
+    function MinWater($Weight){
+        $MinWater = 30*$Weight;
+        return $MinWater;
     }
     
     function adjustBrightness($hex, $steps){
@@ -157,6 +166,16 @@
         if(empty($Weight)) $Weight = 0;
         if(empty($Height)) $Height = 0;
 
-        $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', 0, 0, '$Weight', '$Height', '$MinWater', '$BMI')");
+        $BMI = BMI($Weight, $Height);
+        $MinWater = MinWater($Weight);
+
+        $result = mysqli_query($Connect, "SELECT * FROM users WHERE ID='$UserID'");
+        $row = $result->fetch_assoc();
+        $Completed = $row['Completed'];
+
+        if($Completed==0){
+            $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', 0, 0, '$Weight', '$Height', '$MinWater', '$BMI')");
+            $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
+        }
     }
 ?>

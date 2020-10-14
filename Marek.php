@@ -2,22 +2,8 @@
     function Update($Col, $Value){
         echo 'Update';
     }
-    function min_watter($weight){
-        $min_watter = 30*$weight;
-        Update('Min_Watter', $min_watter);
-        //echo $min_watter;
-    }
-    function BMI($weight, $wzrost){
-        $BMI = $weight/pow(($wzrost/100),2);
-        if($BMI<18.5)$pkt=0.5;
-        else if($BMI>=18.5 && $BMI<=24.9)$pkt=10;
-        else if($BMI>24.9 && $BMI<=29.9)$pkt=1;
-        else if($BMI>29.9 && $BMI<=39.9)$pkt=0.5;
-        else $pkt=0.1 ;
-        
-        return $pkt;
-        
-    }
+    
+    
     function KCAL($Aid, $Time, $weight){
         require_once("Resources/Config.php");
         $result = mysqli_query($Connect, "SELECT * FROM activity_met WHERE ID='$Aid'");
