@@ -5,9 +5,9 @@
 	require_once("Resources/Functions.php");
 	require_once("Resources/Subtitles.php");
 
-    /*define('SESSION_COOKIE',$Title2);
+    define('SESSION_COOKIE',$Title2);
     define('SESSION_ID_LENGHT',40);
-	define('SESSION_COOKIE_EXPIRE',43200);*/
+	define('SESSION_COOKIE_EXPIRE',43200);
 	
 	
 	if(isset($_SESSION['HH_Logged'])){
