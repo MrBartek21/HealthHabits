@@ -1,0 +1,38 @@
+body{
+	padding-top: 70px;
+	padding-bottom: 70px;
+    color: #424242;
+	
+	font-family: 'Nunito', sans-serif !important;
+}
+
+.card{
+	padding: 5px;
+	margin-bottom: 20px;
+}
+
+
+.card-curved{border-radius: 5px !important;}
+.card-curved-lg{border-radius: 20px !important;}
+.pointer{cursor: pointer;}
+
+
+.container-footer{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+    background-color: #494b5f;
+}
+
+.closebtn{
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.closebtn:hover{ color: black;}

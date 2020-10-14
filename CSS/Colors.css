@@ -1,0 +1,37 @@
+.bg-lightblue{background-color: #7CC0FF;}
+.bg-lightblue2{background-color: #47b5d2;}
+.bg-darkblue{background-color: #0E5EA9;}
+.bg-lightgrey{background-color: #f1f1f1;}
+.bg-darkkhaki{background-color: #BDB76B;}
+.bg-chinapink{background-color: #DE6FA1;}
+.bg-bole{background-color: #79443B;}
+.bg-violet{background-color: #8F00FF;}
+.bg-darkgreen{background-color: #2B4D59;}
+.bg-greenblue{background-color: #39998E;}
+.bg-yellowwhite{background-color: #FFDC7C;}
+.bg-darkred{background-color: #540000;}
+
+
+
+.bg-darkkhaki:hover{background-color: #ACA65A;}
+
+
+.btn-lightblue{background-color: #A0DDE0;}
+
+
+.bg-pink{background-color: #fadee1;}
+.bg-orange{background-color: #fad4ae;}
+.bg-yellow{background-color: #faf1d6;}
+.bg-red{background-color: #fdafab;}
+.bg-blue{background-color: #d9f1f1;}
+.bg-sea{background-color: #b6e3e9;}
+.bg-green{background-color: #b4e5c5;}
+
+/*::root{
+    --bs-pink: #fadee1;
+    --bs-orange: #fad4ae;
+    --bs-yellow: #faf1d6;
+    --bs-red: #fdafab;
+    --bs-blue: #d9f1f1;
+    --bs-sea: #b6e3e9;
+}*/
