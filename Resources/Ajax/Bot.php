@@ -3,7 +3,8 @@
     require_once("../Config.php");
     $id=$_GET['id'];
 
-    $result = mysqli_query($Connect, "SELECT * FROM products WHERE ID='$id'");
+    //$result = mysqli_query($Connect, "SELECT * FROM products WHERE ID='$id'");
+    $result = mysqli_query($Connect, "SELECT * FROM products WHERE `Kcal` = '0' AND `Proteins` = '0' AND `Carbohydrates` = '0' AND `Fats` = '0'");
 	while($row=mysqli_fetch_array($result)){
 		$ID = $row['ID'];
         $Type = $row['Test'];

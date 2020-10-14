@@ -31,7 +31,7 @@
 			}else{
 				$Login = htmlentities($Login, ENT_QUOTES, "UTF-8");
 			
-				if ($rezult = $Connect->query(sprintf("SELECT * FROM users WHERE User='%s'", mysqli_real_escape_string($Connect,$Login)))){
+				if ($rezult = $Connect->query(sprintf("SELECT * FROM users WHERE Login='%s'", mysqli_real_escape_string($Connect,$Login)))){
 					$count = $rezult->num_rows;
 					if($count>0){
 						$row = $rezult->fetch_assoc();
@@ -51,11 +51,11 @@
 							
 							header('Location: index.php');
 						}else{
-							$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_LoginPass.'</div>';
+							$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Hasło złe</div>';
 							header('Location: login.php');
 						}
 					}else{
-						$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_LoginLogin.'</div>';
+						$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Login zły</div>';
 						header('Location: login.php');
 					}
 				}else{
@@ -79,12 +79,12 @@
         //Sprawdzenie długości nicka
         if((strlen($Login)<3) || (strlen($Login)>20)){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterLogin1.'</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Niepoprawny login</div>';
         }
         
         if(ctype_alnum($Login)==false){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterLogin2.'</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Niepoprawny login</div>';
         }
         
         // Sprawdź poprawność adresu email
@@ -92,18 +92,18 @@
         
         if((filter_var($Email2, FILTER_VALIDATE_EMAIL)==false) || ($Email2!=$Email)){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterEmail1.'</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Niepoprawny email</div>';
         }
         
         //Sprawdź poprawność hasła
         if((strlen($Pass1)<8) || (strlen($Pass1)>20)){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterPass1.'</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Hasło długośc</div>';
         }
         
         if($Pass1!=$Pass2){
             $OK = false;
-			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterPass2.'</div>';
+			$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">Nie takie same hasła </div>';
         }
         
         $Pass_Hash = password_hash($Pass1, PASSWORD_DEFAULT);
@@ -119,7 +119,7 @@
                 $count = $rezult->num_rows;
                 if($count>0){
                     $OK = false;
-					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterEmail2.'</div>';
+					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">jest taki email</div>';
                 }
                 
                 //Czy login jest już zarezerwowany?
@@ -130,7 +130,7 @@
                 $count = $rezult->num_rows;
                 if($count>0){
                     $OK = false;
-					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$Lang_ERegisterLogin3.'</div>';
+					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">login zarezerwowany</div>';
                 }
                 
                 if($OK==true){

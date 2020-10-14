@@ -30,13 +30,17 @@
         }else{
             $LBM = 1.1 * $weight - 128*pow(($weight/$wzrost),2);
         }
-        echo $LBM;
+        return $LBM;
     }
-    $weight=62;
-    $wzrost = 173;
+    function PPM($LBM){
+        $PPM = 500 + (22*$LBM);
+        return $PPM;
+    }
+    $weight=75;
+    $wzrost = 179;
     $Aid = 23;
     $Time = 600;
-    $Sex='K';
+    $Sex='M';
     
     min_watter($weight);
     $pkt = BMI($weight, $wzrost);
@@ -44,8 +48,8 @@
     echo '<br />';
     KCAL($Aid, $Time, $weight);
     echo '<br />';
-    LBM($weight, $wzrost, $Sex);
-    
+    $LBM = LBM($weight, $wzrost, $Sex);
+    $PPM = PPM($LBM);
     
     
     
