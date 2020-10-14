@@ -16,19 +16,10 @@
 
 		if(isset($_POST['Weight'])) CompleteProfil($Connect, $UserID, $_POST['Weight'], $_POST['Height']);
 
-
 		$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
 		$count = $result->num_rows;
         if($count>0) $UserOK = true;
         else $UserOK = false;
-		
-		/*$file = $UserID.'.png';
-		$src = 'Graphic/Avatars/';
-		if(file_exists($src.'/'.$file)){
-			$UserAvatar = $src.'/'.$UserID.'.png';
-		}else{
-			$UserAvatar = $src.'/no.png';
-		}*/
 	}else{
 		header('Location: login.php');
 	}
@@ -85,7 +76,7 @@
 				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="30" height="30" alt="Menu"> <?php echo $Title;?></a>
 			
 				<?php
-					echo '<a class="text-dark" href="account">
+					echo '<a class="text-dark" href="profil.php">
 							<span class="fa-stack fa-2x">
 								<i class="fa fa-circle fa-stack-2x" style="color: #b4e5c5;"></i>
 								<i class="fas fa-user fa-stack-1x"></i>
@@ -104,20 +95,18 @@
 							if($UserOK){
 								echo '<span id="DailyHabits"></span><span id="Habits"></span>';
 							}else{
-								echo '
-								<div class="col-sm-12">
-								<div class="card card-curved text-dark bg-form">
-									<div class="card-block">
-										<h3 class="card-title text-center"><i class="fas fa-sign-in-alt"></i>'.$SB['complete_profil'].'</h3>
-										<form action="#" method="post" class="form-inline mt-2 mt-md-0">
-											<input class="form-control mr-1 form-100" type="number" name="Weight" maxlength="4" placeholder="'.$SB['weight'].'">
-											<input class="form-control mr-1 form-100" type="number" name="Height" maxlength="4" placeholder="'.$SB['height'].'">
-											<button type="submit" class="btn btn-form">'.$SB['complete_profil_btn'].'</button>
-										</form>
+								echo '<div class="col-sm-12">
+									<div class="card card-curved text-dark bg-form">
+										<div class="card-block">
+											<h3 class="card-title text-center"><i class="fas fa-sign-in-alt"></i>'.$SB['complete_profil'].'</h3>
+											<form action="#" method="post" class="form-inline mt-2 mt-md-0">
+												<input class="form-control mr-1 form-100" type="number" name="Weight" maxlength="4" placeholder="'.$SB['weight'].'">
+												<input class="form-control mr-1 form-100" type="number" name="Height" maxlength="4" placeholder="'.$SB['height'].'">
+												<button type="submit" class="btn btn-form">'.$SB['complete_profil_btn'].'</button>
+											</form>
+										</div>
 									</div>
-								</div>
-							</div>
-								';
+								</div>';
 							}
 						?>
 						

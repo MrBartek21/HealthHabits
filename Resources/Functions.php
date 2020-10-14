@@ -81,7 +81,7 @@
 	
 	function register($Connect, $Login, $Email, $Pass1, $Pass2){
 		mysqli_report(MYSQLI_REPORT_STRICT);
-		include("resources/Subtitles.php");
+		include("Resources/Subtitles.php");
 		include("Resources/Config.php");
 		
 		

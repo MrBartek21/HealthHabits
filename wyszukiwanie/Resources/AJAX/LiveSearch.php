@@ -5,6 +5,11 @@
 	
 	$Querry = $_GET['q'];
 
+    function dodaj(){
+        //$Connect->query("INSERT INTO game VALUES (NULL, '$Code', now(), '0', '5', '10', '$QuestionID')");
+        echo 'codfsdgdf';
+        
+    }
 	$sth = mysqli_query($Connect_HH, "SELECT * FROM activity_met WHERE Name Like '$Querry%' ");
 	while($row=mysqli_fetch_assoc($sth)){
 		
@@ -26,9 +31,5 @@
 	if($Result=="") echo '<input type="button" class="dropdown-item" type="button" value="Nie znaleziono takiej aktywności"/>';
 	else echo $Result;
 	
-	function dodaj(){
-        //$Connect->query("INSERT INTO game VALUES (NULL, '$Code', now(), '0', '5', '10', '$QuestionID')");
-        echo 'codfsdgdf';
-        
-    }
+	
 ?>
