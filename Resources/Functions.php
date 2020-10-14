@@ -153,7 +153,10 @@
         }
     }
     
-    function CompleteProfil($Connect, $Weight, $Height){
+    function CompleteProfil($Connect, $UserID, $Weight, $Height){
+        if(empty($Weight)) $Weight = 0;
+        if(empty($Height)) $Height = 0;
 
+        $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', 0, 0, '$Weight', '$Height', '$MinWater', '$BMI')");
     }
 ?>
