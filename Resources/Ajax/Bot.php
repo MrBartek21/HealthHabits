@@ -1,8 +1,9 @@
 <?php
     session_start();
-	require_once("Resources/Config.php");
+    require_once("../Config.php");
+    $id=$_GET['id'];
 
-    $result = mysqli_query($Connect, "SELECT * FROM products");
+    $result = mysqli_query($Connect, "SELECT * FROM products WHERE ID='$id'");
 	while($row=mysqli_fetch_array($result)){
 		$ID = $row['ID'];
         $Type = $row['Test'];
