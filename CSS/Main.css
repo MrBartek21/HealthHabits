@@ -29,6 +29,10 @@ body{
 	margin-bottom: 20px;
 }
 
+.icon-hover{color: #6e9f7f !important;}
+
+.icon-hover:hover{color: #4c7d5d;}
+
 
 .card-curved{border-radius: 5px !important;}
 .card-curved-lg{border-radius: 20px !important;}

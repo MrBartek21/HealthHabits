@@ -86,6 +86,24 @@
 			</div>
 		</nav>
 
+		<!-- Modal -->
+		<div class="modal fade" id="AddHabits" tabindex="-1" role="dialog" aria-labelledby="AddHabitsLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="AddHabitsLabel">Dodaj nawyk</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<?php GetHabbits($Connect);?>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- Page Content -->
 		<div class="container">
 			<div class="row">
@@ -110,6 +128,11 @@
 							}
 						?>
 						
+
+						<span class="fa-stack fa-2x icon-hover" data-toggle="modal" data-target="#AddHabits">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fas fa-plus fa-stack-1x"></i>
+						</span>
 					</div>
 				</div>
 			</div>

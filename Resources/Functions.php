@@ -178,4 +178,22 @@
             $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
         }
     }
+
+    function GetHabbits($Connect){
+        $result = mysqli_query($Connect, "SELECT * FROM habits");
+		while($row=mysqli_fetch_array($result)){
+			$Name = $row['Name'];
+			$Type = $row['Type'];
+			$Color = $row['Color'];
+			$Icon = $row['Icon'];
+			$ColorDarker = adjustBrightness($Color, -40);
+
+            $List .= '
+            <i class="'.$Icon.'"></i> <B>'.$Name.'</B><br>
+
+			';
+        }
+        
+        echo $List;
+    }
 ?>
