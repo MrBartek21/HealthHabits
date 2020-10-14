@@ -1,6 +1,5 @@
 <?php
 	$Host = "localhost";
-	$Host = "classicgames.sytes.net";
 	$DB_User = "mysqladmin";
 	$DB_Password = "mysqladmin";
 	$DB_Name = "p_healthhabbits";
@@ -27,7 +26,7 @@
 	$Color_Sea = "b6e3e9";
 	$Color_Green = "b4e5c5";
 	
-    $Color_Theme = $pink;
+    $Color = $Color_Green;
     
 	
 	
