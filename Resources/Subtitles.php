@@ -15,6 +15,13 @@
     $SB['repeat_password'] = "Powtórz hasło";
 
 
+    //Index.php
+    $SB['complete_profil'] = "Uzupełnij profil";
+    $SB['weight'] = "Waga (kg)";
+    $SB['height'] = "Wysokość (cm)";
+    $SB['complete_profil_btn'] = "Aktualizuj";
+
+
     //Functions.php
     $SB['error1'] = "Błąd serwera! Przepraszamy za niedogodności i prosimy o wizytę w innym terminie!";
     $SB['error2'] = "Informacje dla programistów:";

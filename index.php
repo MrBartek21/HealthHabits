@@ -7,23 +7,32 @@
 
     /*define('SESSION_COOKIE',$Title2);
     define('SESSION_ID_LENGHT',40);
-    define('SESSION_COOKIE_EXPIRE',43200);*/
+	define('SESSION_COOKIE_EXPIRE',43200);*/
+	
+	if(isset($_POST['Weight'])) CompleteProfil($Connect, $_POST['Weight'], $_POST['Height']);
 	
 	
 	if(isset($_SESSION['HH_Logged'])){
 		$UserID = $_SESSION['HH_ID'];
 		$UserName = $_SESSION['HH_User'];
+
+
+		$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+		$count = $result->num_rows;
+        if($count>0) $UserOK = true;
+        else $UserOK = false;
 		
-		$file = $UserID.'.png';
+		/*$file = $UserID.'.png';
 		$src = 'Graphic/Avatars/';
 		if(file_exists($src.'/'.$file)){
 			$UserAvatar = $src.'/'.$UserID.'.png';
 		}else{
 			$UserAvatar = $src.'/no.png';
-		}
+		}*/
 	}else{
 		header('Location: login.php');
 	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -75,17 +84,14 @@
 			<div class="container">
 				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="30" height="30" alt="Menu"> <?php echo $Title;?></a>
 			
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<?php
-							//Menu("index", $Lang);
-							
-							
-							if($_SESSION['CG_Logged']) echo '<li class="nav-item"><a class="nav-link btn btn-warning mr-2 text-dark navbar-brand" href="profil"><img src="'.$UserAvatar.'" width="30" height="30" class="d-inline-block align-top rounded-circle" alt=""> '.$UserName.'</a></li>';
-							else echo '<li class="nav-item"><a class="nav-link btn btn-warning mr-2 text-dark" href="account">'.$SB['main_page'].'</a></li>';
-						?>
-					</ul>
-				</div>
+				<?php
+					echo '<a class="text-dark" href="account">
+							<span class="fa-stack fa-2x">
+								<i class="fa fa-circle fa-stack-2x" style="color: #b4e5c5;"></i>
+								<i class="fas fa-user fa-stack-1x"></i>
+							</span>
+						</a>';
+				?>
 			</div>
 		</nav>
 
@@ -94,8 +100,27 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="row">
-						<span id="DailyHabits"></span>
-					    <span id="Habits"></span>
+						<?php
+							if($UserOK){
+								echo '<span id="DailyHabits"></span><span id="Habits"></span>';
+							}else{
+								echo '
+								<div class="col-sm-12">
+								<div class="card card-curved text-dark bg-form">
+									<div class="card-block">
+										<h3 class="card-title text-center"><i class="fas fa-sign-in-alt"></i>'.$SB['complete_profil'].'</h3>
+										<form action="#" method="post" class="form-inline mt-2 mt-md-0">
+											<input class="form-control mr-1 form-100" type="number" name="Weight" maxlength="4" placeholder="'.$SB['weight'].'">
+											<input class="form-control mr-1 form-100" type="number" name="Height" maxlength="4" placeholder="'.$SB['height'].'">
+											<button type="submit" class="btn btn-form">'.$SB['complete_profil_btn'].'</button>
+										</form>
+									</div>
+								</div>
+							</div>
+								';
+							}
+						?>
+						
 					</div>
 				</div>
 			</div>

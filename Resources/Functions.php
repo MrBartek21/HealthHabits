@@ -32,10 +32,10 @@
 			}else{
 				$Login = htmlentities($Login, ENT_QUOTES, "UTF-8");
 			
-				if ($rezult = $Connect->query(sprintf("SELECT * FROM users WHERE Login='%s'", mysqli_real_escape_string($Connect,$Login)))){
-					$count = $rezult->num_rows;
+				if ($result = $Connect->query(sprintf("SELECT * FROM users WHERE Login='%s'", mysqli_real_escape_string($Connect,$Login)))){
+					$count = $result->num_rows;
 					if($count>0){
-						$row = $rezult->fetch_assoc();
+						$row = $result->fetch_assoc();
 						if(password_verify($Pass, $row['Pass'])){
 							$_SESSION['HH_Logged'] = true;
 							$_SESSION['HH_ID'] = $row['ID'];
@@ -48,7 +48,7 @@
 							$Connect->query("UPDATE users SET IP = '$IP' WHERE ID = '$ID'");
 							
 							unset($_SESSION['error']);
-							$rezult->free_result();
+							$result->free_result();
 							
 							header('Location: index.php');
 						}else{
@@ -113,22 +113,22 @@
                 throw new Exception(mysqli_connect_errno());
             }else{
                 //Czy email już istnieje?
-                $rezult = $Connect->query("SELECT ID FROM users WHERE Email='$Email'");
+                $result = $Connect->query("SELECT ID FROM users WHERE Email='$Email'");
                 
-                if(!$rezult) throw new Exception($Connect->error);
+                if(!$result) throw new Exception($Connect->error);
                 
-                $count = $rezult->num_rows;
+                $count = $result->num_rows;
                 if($count>0){
                     $OK = false;
 					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['email_exist'].'</div>';
                 }
                 
                 //Czy login jest już zarezerwowany?
-                $rezult = $Connect->query("SELECT ID FROM users WHERE Login='$Login'");
+                $result = $Connect->query("SELECT ID FROM users WHERE Login='$Login'");
                 
-                if (!$rezult) throw new Exception($Connect->error);
+                if (!$result) throw new Exception($Connect->error);
 
-                $count = $rezult->num_rows;
+                $count = $result->num_rows;
                 if($count>0){
                     $OK = false;
 					$_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['login_exist'].'</div>';
@@ -151,5 +151,9 @@
             $_SESSION['error'] = '<div class="alert alert-danger text-center" role="alert">'.$SB['error1'].'</div>';
 			$_SESSION['error'] .= '<div class="alert alert-danger text-center" role="alert">'.$SB['error2'].' '.$e.'</div>';
         }
-	}
+    }
+    
+    function CompleteProfil($Connect, $Weight, $Height){
+
+    }
 ?>

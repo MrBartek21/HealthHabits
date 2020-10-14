@@ -17,21 +17,18 @@
 		                <div class="row">
                             <input type="number" class="form-control" id="" placeholder="H" name="h" min="0" max="24">
                             <input type="number" class="form-control" id="" placeholder="MIN" name="min" min="0" max="60">
-                            <button type="submit" class="btn btn-secondary" onclick="dodaj()">Dodaj</button>
+                            <button type="submit" class="btn btn-secondary" onclick="dodaj('.$Name.')">Dodaj</button>
                         </div>
                     </div>
 		            ';
-		$h = $_GET['h'];
-		$min = $_GET['min'];
 	}
 	
 	if($Result=="") echo '<input type="button" class="dropdown-item" type="button" value="Nie znaleziono takiej aktywności"/>';
 	else echo $Result;
-?>
-<script>
-    function dodaj(){
+	
+	function dodaj(){
         //$Connect->query("INSERT INTO game VALUES (NULL, '$Code', now(), '0', '5', '10', '$QuestionID')");
-        alert();
-        console.log('wykonano2');
+        echo 'codfsdgdf';
+        
     }
-</script>
+?>
