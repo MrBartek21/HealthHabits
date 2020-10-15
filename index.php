@@ -9,12 +9,11 @@
     define('SESSION_ID_LENGHT',40);
 	define('SESSION_COOKIE_EXPIRE',43200);
 	
-	
 	if(isset($_SESSION['HH_Logged'])){
 		$UserID = $_SESSION['HH_ID'];
 		$UserName = $_SESSION['HH_User'];
 
-		if(isset($_POST['Weight'])) CompleteProfil($Connect, $UserID, $_POST['Weight'], $_POST['Height']);
+		if(isset($_POST['Weight'])) CompleteProfil($Connect, $UserID, $_POST['Weight'], $_POST['Height'], $_POST['Sex']);
 
 		$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
 		$count = $result->num_rows;
@@ -91,14 +90,14 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="AddHabitsLabel">Dodaj nawyk</h5>
+						<h5 class="modal-title" id="AddHabitsLabel"><?php echo $SB['habits_btn']?></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body">
 						<?php GetHabbits($Connect);?>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
 					</div>
 				</div>
 			</div>
@@ -111,7 +110,11 @@
 					<div class="row">
 						<?php
 							if($UserOK){
-								echo '<span id="DailyHabits"></span><span id="Habits"></span>';
+								echo '<span id="DailyHabits"></span><span id="Habits"></span>
+								<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits" style="bottom: 50px; position: absolute;">
+									<i class="fa fa-circle fa-stack-2x" style="color: #6e9f7f;"></i>
+									<i class="fas fa-plus fa-stack-1x"></i>
+								</span>';
 							}else{
 								echo '<div class="col-sm-12">
 									<div class="card card-curved text-dark bg-form">
@@ -120,6 +123,10 @@
 											<form action="#" method="post" class="form-inline mt-2 mt-md-0">
 												<input class="form-control mr-1 form-100" type="number" name="Weight" maxlength="4" placeholder="'.$SB['weight'].'">
 												<input class="form-control mr-1 form-100" type="number" name="Height" maxlength="4" placeholder="'.$SB['height'].'">
+												<label for="male" class="form-check-label">'.$SB['sex_m'].'</label>
+												<input class="mr-1 form-check-input" type="radio" name="Sex" value="M" id="male"><br>
+												<label for="female" class="form-check-label">'.$SB['sex_k'].'</label>
+												<input class="mr-1 form-check-input" type="radio" name="Sex" value="K" id="female">
 												<button type="submit" class="btn btn-form">'.$SB['complete_profil_btn'].'</button>
 											</form>
 										</div>
@@ -127,12 +134,6 @@
 								</div>';
 							}
 						?>
-						
-
-						<span class="fa-stack fa-2x icon-hover" data-toggle="modal" data-target="#AddHabits">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fas fa-plus fa-stack-1x"></i>
-						</span>
 					</div>
 				</div>
 			</div>

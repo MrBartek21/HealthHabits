@@ -3,6 +3,9 @@
     $SB['main_page'] = "Strona główna";
 
 
+    $SB['close_btn'] = "Zamknij";
+
+
     //Login.php
     $SB['log_in'] = "Logowanie";
     $SB['log_in_btn'] = "Zaloguj się";
@@ -20,6 +23,10 @@
     $SB['weight'] = "Waga (kg)";
     $SB['height'] = "Wysokość (cm)";
     $SB['complete_profil_btn'] = "Aktualizuj";
+    $SB['habits_btn'] = "Dodaj nawyki";
+    
+    $SB['sex_m'] = "Mężczyzna";
+    $SB['sex_k'] = "Kobieta";
 
 
     //Functions.php
@@ -40,6 +47,11 @@
     $SB['login_exist'] = "Istnieje juz użytkownik o takim loginie!";
     $SB['success_register'] = "Rejestracja zakończona sukcesem! Możesz się teraz zalogować.";
 
+
+    //Ajax
+    $SB['email'] = "Email";
+    //GetHabits.php
+    $SB['zero_habbits'] = "Nie masz żadnych nawyków. Dodaj pare przyciskiem na dole.";
 
 
    // print_r($SB);

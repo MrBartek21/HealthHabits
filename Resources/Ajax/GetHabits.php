@@ -2,6 +2,7 @@
     session_start();
 	require_once("../Config.php");
 	require_once("../Functions.php");
+	require_once("../Subtitles.php");
 
 	$UserID = $_SESSION['HH_ID'];
 
@@ -37,6 +38,6 @@
 
 		echo $List;
 	}else{
-		echo 'jnie ma';
+		echo '<div class="alert alert-warning text-center" role="alert">'.$SB['zero_habbits'].'</div>';
 	}
 ?>

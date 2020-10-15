@@ -6,13 +6,39 @@
         else if($BMI>24.9 && $BMI<=29.9) $pkt=1;
         else if($BMI>29.9 && $BMI<=39.9) $pkt=0.5;
         else $pkt=0.1;
-
-        return $pkt;
+        $BMI = round($BMI, 2);
+        return array($BMI,$pkt);
     }
 
     function MinWater($Weight){
         $MinWater = 30*$Weight;
+        $MinWater = round($MinWater, 2);
         return $MinWater;
+    }
+    
+    function LBM($Weight, $Height, $Sex){
+        if($Sex == 'K') $LBM = 1.07 * $Weight - 148*pow($Weight/$Height, 2);
+        else $LBM = 1.1 * $Weight - 128*pow($Weight/$Height, 2);
+        $LBM = round($LBM, 2);
+        return $LBM;
+    }
+    
+    function PPM($LBM){
+        $PPM = 500 + (22*$LBM);
+        $PPM = round($PPM, 2);
+        return $PPM;
+    }
+    
+    function CPM($PPM, $Kactivity){
+        $CPM = $PPM + $Kactivity;
+        $CPM = round($CPM, 2);
+        return $CPM;
+    }
+    
+    function PAL($PPM, $CPM){
+        $PAL = $CPM / $PPM;
+        $PAL = round($PAL, 2);
+        return $PAL;   
     }
     
     function adjustBrightness($hex, $steps){
@@ -162,21 +188,30 @@
         }
     }
     
-    function CompleteProfil($Connect, $UserID, $Weight, $Height){
-        if(empty($Weight)) $Weight = 0;
-        if(empty($Height)) $Height = 0;
+    function CompleteProfil($Connect, $UserID, $Weight, $Height, $Sex){
+        //if(empty($Weight)) $Weight = 0;
+        //if(empty($Height)) $Height = 0;
+        if(!empty($Sex) && !empty($Weight) && !empty($Height)){
+        $Kactivity = 0.0;
 
-        $BMI = BMI($Weight, $Height);
+        $BMI2 = BMI($Weight, $Height);
+        $BMI = $BMI2[0];
+        $pkt = $BMI2[1];
         $MinWater = MinWater($Weight);
+        $LBM = LBM($Weight, $Height, $Sex);
+        $PPM = PPM($LBM);
+        $CPM = CPM($PPM, $Kactivity);
+        $PAL = PAL($PPM, $CPM);
 
         $result = mysqli_query($Connect, "SELECT * FROM users WHERE ID='$UserID'");
         $row = $result->fetch_assoc();
         $Completed = $row['Completed'];
-
-        if($Completed==0){
-            $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', 0, 0, '$Weight', '$Height', '$MinWater', '$BMI')");
-            $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
-        }
+        
+            if($Completed==0){
+                $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', '$pkt', 0, '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', '$PAL', '$Sex', '$Kactivity')");
+                $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
+            }
+        }else echo '<div class="alert alert-danger">Nie podano wszystkich wymaganych danych</div>';
     }
 
     function GetHabbits($Connect){
@@ -189,8 +224,17 @@
 			$ColorDarker = adjustBrightness($Color, -40);
 
             $List .= '
-            <i class="'.$Icon.'"></i> <B>'.$Name.'</B><br>
-
+                <div class="row">
+                    <div class="col-2">
+                        <span class="fa-stack fa-2x">
+                            <i class="fa fa-circle fa-stack-2x" style="color: #'.$ColorDarker.';"></i>
+                            <i class="'.$Icon.' fa-stack-1x"></i>
+                        </span>
+                    </div>
+                    <div class="col-6"><B>'.$Name.'</B></div>
+                    <div class="col-4"><button type="button" class="btn btn-success btn-block">Dodaj</button></div>
+                </div>
+                <br><br>
 			';
         }
         

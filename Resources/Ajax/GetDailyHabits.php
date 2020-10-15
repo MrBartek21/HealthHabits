@@ -26,5 +26,5 @@
 		</div>';
 	}
     
-	echo $List;
+	//echo $List;
 ?>
