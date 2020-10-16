@@ -94,7 +94,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body">
-						<?php GetHabbits($Connect);?>
+						<?php GetHabbits($Connect, $UserID);?>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
@@ -145,6 +145,15 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
+            function AddHabit(id, userid){
+                $(document).ready(function(){
+                    $.get('Resources/Ajax/AddHabit.php', {id: id, userid: userid}, function(data){
+                        //$("#UserInfo").html(data);
+						console.log(data);
+                    });
+                });
+			}
+        
             $(document).ready(function(){
 				var UserID = 'fd';
 

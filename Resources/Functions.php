@@ -189,34 +189,33 @@
     }
     
     function CompleteProfil($Connect, $UserID, $Weight, $Height, $Sex){
-        //if(empty($Weight)) $Weight = 0;
-        //if(empty($Height)) $Height = 0;
         if(!empty($Sex) && !empty($Weight) && !empty($Height)){
-        $Kactivity = 0.0;
-
-        $BMI2 = BMI($Weight, $Height);
-        $BMI = $BMI2[0];
-        $pkt = $BMI2[1];
-        $MinWater = MinWater($Weight);
-        $LBM = LBM($Weight, $Height, $Sex);
-        $PPM = PPM($LBM);
-        $CPM = CPM($PPM, $Kactivity);
-        $PAL = PAL($PPM, $CPM);
-
-        $result = mysqli_query($Connect, "SELECT * FROM users WHERE ID='$UserID'");
-        $row = $result->fetch_assoc();
-        $Completed = $row['Completed'];
+            $Kactivity = 0.0;
+    
+            $BMI2 = BMI($Weight, $Height);
+            $BMI = $BMI2[0];
+            $pkt = $BMI2[1];
+            $MinWater = MinWater($Weight);
+            $LBM = LBM($Weight, $Height, $Sex);
+            $PPM = PPM($LBM);
+            $CPM = CPM($PPM, $Kactivity);
+            $PAL = PAL($PPM, $CPM);
+    
+            $result = mysqli_query($Connect, "SELECT * FROM users WHERE ID='$UserID'");
+            $row = $result->fetch_assoc();
+            $Completed = $row['Completed'];
         
             if($Completed==0){
                 $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', '$pkt', 0, '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', '$PAL', '$Sex', '$Kactivity')");
                 $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
             }
-        }else echo '<div class="alert alert-danger">Nie podano wszystkich wymaganych danych</div>';
+        }else echo '<div class="alert alert-danger">'.$SB['empty_form'].'</div>';
     }
 
-    function GetHabbits($Connect){
+    function GetHabbits($Connect, $UserID){
         $result = mysqli_query($Connect, "SELECT * FROM habits");
 		while($row=mysqli_fetch_array($result)){
+			$ID = $row['ID'];
 			$Name = $row['Name'];
 			$Type = $row['Type'];
 			$Color = $row['Color'];
@@ -232,7 +231,7 @@
                         </span>
                     </div>
                     <div class="col-6"><B>'.$Name.'</B></div>
-                    <div class="col-4"><button type="button" class="btn btn-success btn-block">Dodaj</button></div>
+                    <div class="col-4"><button type="button" class="btn btn-success btn-block" onClick="AddHabit('.$ID.', '.$UserID.')">Dodaj</button></div>
                 </div>
                 <br><br>
 			';

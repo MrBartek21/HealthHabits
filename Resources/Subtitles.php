@@ -46,6 +46,9 @@
     $SB['email_exist'] = "Istnieje już konto przypisane do tego adresu Email!";
     $SB['login_exist'] = "Istnieje juz użytkownik o takim loginie!";
     $SB['success_register'] = "Rejestracja zakończona sukcesem! Możesz się teraz zalogować.";
+    
+    //f CompleteProfil
+    $SB['empty_form'] = 'Nie podano wszystkich wymaganych danych!';
 
 
     //Ajax
