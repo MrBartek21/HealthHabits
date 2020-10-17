@@ -64,7 +64,6 @@
 		
 		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
         
         <title><?php echo $SB['main_page'].' - '.$Title;?></title>
 	</head>
@@ -82,6 +81,13 @@
 							</span>
 						</a>';
 				?>
+			</div>
+		</nav>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-navbar" style="background-color: red !important;">
+			<div class="container">
+			<span id="DailyHabits"></span>
+				
 			</div>
 		</nav>
 

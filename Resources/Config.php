@@ -15,8 +15,8 @@
 	$Author = "Bartłomiej Pacyna, Patryk Ignasiak, Noemi Ignaczak, Adrian Sobiela";
 	
 	$Description = "Kiedy e.";
-	$Title = "Health Habits";
-	$Title2 = "HealthHabits";
+	$Title = "Healthy Habits";
+	$Title2 = "HealthyHabits";
 
     $Color = "b4e5c5";
 	

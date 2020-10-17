@@ -25,19 +25,24 @@
 			$YearNow = date("Y");
 
 			if($Updated==0){
-				$Icon2 = '<i class="fas fa-times fa-2x" style="color: gray;"></i>';
+				//$Icon2 = '<i class="fas fa-times fa-2x" style="color: gray;"></i>';
 				$UpdateTime = $SB['no_update'];
+				$Series = 0;
 			}else{
 				if($YearNow-$UpdateYear>0){
-					$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
+					//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
+					$Series = 0;
 				}else{
 					if($MonthNow-$UpdateMonth>0){
-						$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
+						//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
+						$Series = 0;
 					}else{
 						if($DayNow-$UpdateDay>0){
-							$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
+							//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
+							$Series = 0;
 						}else{
-							$Icon2 = '<i class="fas fa-check fa-2x" style="color: green;"></i>';
+							//$Icon2 = '<i class="fas fa-check fa-2x" style="color: green;"></i>';
+							$Series = 1;
 						}
 					}
 				}
@@ -68,7 +73,7 @@
 						
 					</div>
 					<div class="card-footer">
-						<button type="button" class="btn btn-success btn-block btn-lg" onClick="UpdateHabit('.$HabitsID.', '.$UserID.')">Aktualizuj</button>
+						<button type="button" class="btn btn-success btn-block btn-lg" onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')">Aktualizuj</button>
 					</div>
 				</div>
 			</div>';

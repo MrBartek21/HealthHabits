@@ -1,14 +1,47 @@
-body{
-	padding-top: 90px;
-	padding-bottom: 70px;
-	color: #424242;
-	background-color: var(--c-green);
+@font-face {
+	font-family: 'Caviar Dreams';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Caviar Dreams'), url('../Font/CaviarDreams.ttf') format('truetype');
+}
 	
-	font-family: 'Nunito', sans-serif !important;
+	
+@font-face {
+	font-family: 'Caviar Dreams Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Caviar Dreams Italic'), url('../Font/CaviarDreamsItalic.ttf') format('truetype');
+}
+	
+	
+@font-face {
+	font-family: 'Caviar Dreams Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Caviar Dreams Bold'), url('../Font/CaviarDreams_Bold.ttf') format('truetype');
+}
+	
+	
+@font-face {
+	font-family: 'Caviar Dreams Bold Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Caviar Dreams Bold Italic'), url('../Font/CaviarDreams_BoldItalic.ttf') format('truetype');
 }
 
-.bg-navbar{background-color: #6e9f7f;}
-.bg-form{background-color: #8cbd9d;}
+
+body{
+	padding-top: 80px;
+	padding-bottom: 70px;
+	color: #424242;
+	background-color: #f5f2f2;
+
+	font-family:'Caviar Dreams';
+	font-weight:normal;
+}
+
+.bg-navbar{background-color: #d4f0f0;}
+.bg-form{background-color: #abdee6;}
 
 .form-100{
 	margin-bottom: 20px;
@@ -17,11 +50,11 @@ body{
 
 .btn-form{
 	width: 100% !important;
-	background-color: #6e9f7f;
+	background-color: #8fcaca;
 }
 
 .btn-form:hover{
-	background-color: #4c7d5d;
+	background-color: #6da8a8;
 }
 
 .card{
