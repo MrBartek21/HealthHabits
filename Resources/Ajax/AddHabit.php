@@ -15,16 +15,9 @@
     
     echo $count;
     if($count<1){
-        $Connect->query("INSERT INTO userhabits VALUES (NULL, '$UserID', '$HabitsID', now(), now()");
-        echo "dodaje";
+        $Connect->query("INSERT INTO userhabits VALUES (NULL, '$UserID', '$HabitsID', now(), now(), 0)");
+        echo 'OK - Add: '.$HabitsID;
     }else{
-        echo "jest taka aktywnosc juz";
+        echo 'OK - Exist: '.$HabitsID;
     }
-    
-    
-//	$Connect->query("INSERT INTO userhabits VALUES (NULL, '$UserID', '$HabitsID', now(), now()");
-
-	
-	
-	echo 'OK - Shoot: '.$Code.': '.$IDShoot;
 ?>

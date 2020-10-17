@@ -55,6 +55,7 @@
     $SB['email'] = "Email";
     //GetHabits.php
     $SB['zero_habbits'] = "Nie masz żadnych nawyków. Dodaj pare przyciskiem na dole.";
+    $SB['no_update'] = "Brak aktywności.";
 
 
    // print_r($SB);

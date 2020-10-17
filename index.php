@@ -111,7 +111,7 @@
 						<?php
 							if($UserOK){
 								echo '<span id="DailyHabits"></span><span id="Habits"></span>
-								<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits" style="bottom: 50px; position: absolute;">
+								<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits" style="bottom: 50px; position: sticky;">
 									<i class="fa fa-circle fa-stack-2x" style="color: #6e9f7f;"></i>
 									<i class="fas fa-plus fa-stack-1x"></i>
 								</span>';
