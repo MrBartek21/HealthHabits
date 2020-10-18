@@ -18,6 +18,6 @@
 	$Title = "Healthy Habits";
 	$Title2 = "HealthyHabits";
 
-    $Color = "b4e5c5";
+    $Color = "ffc5bf";
 	
 ?>

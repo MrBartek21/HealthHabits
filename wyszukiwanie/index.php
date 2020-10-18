@@ -42,6 +42,32 @@
 				xmlhttp.send();
 			}
 
+        
+        
+        
+        
+
+        
+        
+        //odświeżanie co sek
+        $(document).ready(function(){
+
+
+            //przerzut karty 
+            function activity_kcal(){
+                $.get('Resources/AJAX/LiveSearch.php', function(data){
+                });
+            }
+            
+
+            setInterval(function(){
+        	    activity_kcal();
+        	    //console.log('123');
+            },1000);
+        });
+
+
+		
 		</script>
     </body>
 </html>

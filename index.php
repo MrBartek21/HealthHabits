@@ -84,23 +84,43 @@
 			</div>
 		</nav>
 
-		<nav class="navbar navbar-expand-lg navbar-dark bg-navbar" style="background-color: red !important;">
-			<div class="container">
-			<span id="DailyHabits"></span>
+		<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
+			<div class="container" id="DailyHabits">
 				
 			</div>
 		</nav>
 
-		<!-- Modal -->
+		<!-- AddHAbits -->
 		<div class="modal fade" id="AddHabits" tabindex="-1" role="dialog" aria-labelledby="AddHabitsLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="AddHabitsLabel"><?php echo $SB['habits_btn']?></h5>
+						<h5 class="modal-title" id="AddHabitsLabel"><?php echo $SB['habits_add']?></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body">
 						<?php GetHabbits($Connect, $UserID);?>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- UpdateWeight -->
+		<div class="modal fade" id="UpdateWeight" tabindex="-1" role="dialog" aria-labelledby="UpdateWeightLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="UpdateWeightLabel"><?php echo $SB['weight_update']?></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<form action="#" method="post" class="form-inline mt-2 mt-md-0"  id="WeightForm" onSubmit="return false;">
+							<input class="form-control mr-1 form-100" type="number" name="WeightUpdate" id= "WeightUpdate" maxlength="4" placeholder="<?php echo $SB['weight'];?>">
+							<button type="submit" class="btn btn-form"><?php echo $SB['complete_profil_btn'];?></button>
+						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
@@ -116,7 +136,7 @@
 					<div class="row">
 						<?php
 							if($UserOK){
-								echo '<span id="DailyHabits"></span><span id="Habits"></span>
+								echo '<span id="Habits"></span>
 								<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits" style="bottom: 50px; position: sticky;">
 									<i class="fa fa-circle fa-stack-2x" style="color: #6e9f7f;"></i>
 									<i class="fas fa-plus fa-stack-1x"></i>
@@ -161,7 +181,18 @@
 			}
         
             $(document).ready(function(){
-				var UserID = 'fd';
+				$(document).on('submit', '#WeightForm', function(){
+                    var Weight = $.trim($("#WeightUpdate").val());
+					var UserID = '<?php echo $UserID;?>';
+					
+                    if(Weight != ""){
+                        $.get('Resources/Ajax/WeightUpdate.php', {Weight: Weight, UserID: UserID}, function(data){
+							$("#WeightForm").html(data);
+                        });
+                    }else{
+                        alert("Complete all fields!");
+                    }
+                });
 
 				//Get Daily Habits
                 function GetDailyHabits(){

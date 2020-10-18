@@ -229,7 +229,6 @@
         
             if($Completed==0){
                 $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', '$pkt', 0, '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', '$PAL', '$Sex', '$Kactivity')");
-                $Connect->query("INSERT INTO userhistory VALUES (NULL, '$UserID', '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', now())");
                 $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
             }
         }else echo '<div class="alert alert-danger">'.$SB['empty_form'].'</div>';

@@ -13,7 +13,7 @@
 		while($row=mysqli_fetch_array($result)){
 			$HabitsID = $row['HabitsID'];
 			$UpdateTime = $row['UpdateTime'];
-			$Updated = $row['Updated'];
+
 
 			$timestamp = strtotime($UpdateTime);
 			$UpdateDay = date('d', $timestamp);
@@ -24,26 +24,20 @@
 			$MonthNow = date("m");
 			$YearNow = date("Y");
 
-			if($Updated==0){
-				//$Icon2 = '<i class="fas fa-times fa-2x" style="color: gray;"></i>';
-				$UpdateTime = $SB['no_update'];
+			if($YearNow-$UpdateYear>0){
+				//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
 				$Series = 0;
 			}else{
-				if($YearNow-$UpdateYear>0){
+				if($MonthNow-$UpdateMonth>0){
 					//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
 					$Series = 0;
 				}else{
-					if($MonthNow-$UpdateMonth>0){
+					if($DayNow-$UpdateDay>0){
 						//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
 						$Series = 0;
 					}else{
-						if($DayNow-$UpdateDay>0){
-							//$Icon2 = '<i class="fas fa-exclamation fa-2x" style="color: darkred;"></i>';
-							$Series = 0;
-						}else{
-							//$Icon2 = '<i class="fas fa-check fa-2x" style="color: green;"></i>';
-							$Series = 1;
-						}
+						//$Icon2 = '<i class="fas fa-check fa-2x" style="color: green;"></i>';
+						$Series = 1;
 					}
 				}
 			}
@@ -57,26 +51,30 @@
 			$Icon = $row['Icon'];
 			$ColorDarker = adjustBrightness($Color, -40);
 
-			$List .= '
-			<div class="col-lg-12">
-				<div class="card h-100 card-curved-lg text-dark" style="background-color: #'.$Color.'">
-					<div class="card-body">
-					'.$Icon2.'
-						<span class="fa-stack fa-2x">
-							<i class="fa fa-circle fa-stack-2x" style="color: #'.$ColorDarker.';"></i>
-							<i class="'.$Icon.' fa-stack-1x"></i>
-						</span>
-						<figure class="figure">
-							<B class="figure-img rounded">'.$Name.'</B> Typ: '.$Type.'
-							<figcaption class="figure-caption">'.$UpdateTime.'</figcaption>
-						</figure>
-						
-					</div>
-					<div class="card-footer">
-						<button type="button" class="btn btn-success btn-block btn-lg" onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')">Aktualizuj</button>
-					</div>
-				</div>
-			</div>';
+			if($Type!=1){
+				$List .= '
+					<div class="col-lg-12">
+						<div class="card h-100 card-curved-lg text-dark" style="background-color: #'.$Color.'">
+							<div class="card-body">
+							'.$Icon2.'
+								<span class="fa-stack fa-2x">
+									<i class="fa fa-circle fa-stack-2x" style="color: #'.$ColorDarker.';"></i>
+									<i class="'.$Icon.' fa-stack-1x"></i>
+								</span>
+								<figure class="figure">
+									<B class="figure-img rounded">'.$Name.'</B> Typ: '.$Type.'
+									<figcaption class="figure-caption">'.$UpdateTime.'</figcaption>
+								</figure>
+								
+							</div>
+							<div class="card-footer">
+								<button type="button" class="btn btn-success btn-block btn-lg" onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')">Aktualizuj</button>
+							</div>
+						</div>
+					</div>';
+			}
+
+			
 		}
 
 		echo $List;

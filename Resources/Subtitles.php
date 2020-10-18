@@ -23,7 +23,8 @@
     $SB['weight'] = "Waga (kg)";
     $SB['height'] = "Wysokość (cm)";
     $SB['complete_profil_btn'] = "Aktualizuj";
-    $SB['habits_btn'] = "Dodaj nawyki";
+    $SB['habits_add'] = "Dodaj nawyki";
+    $SB['weight_update'] = "Dodaj dzisiejszą wagę";
     
     $SB['sex_m'] = "Mężczyzna";
     $SB['sex_k'] = "Kobieta";

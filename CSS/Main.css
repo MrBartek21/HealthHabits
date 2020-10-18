@@ -34,27 +34,27 @@ body{
 	padding-top: 80px;
 	padding-bottom: 70px;
 	color: #424242;
-	background-color: #f5f2f2;
+	background-color: #ffc5bf;
 
 	font-family:'Caviar Dreams';
-	font-weight:normal;
+	font-weight: normal;
 }
 
-.bg-navbar{background-color: #d4f0f0;}
-.bg-form{background-color: #abdee6;}
+.bg-navbar{background-color: #da9788;}
+.bg-form{background-color: #FCB9AA;}
 
 .form-100{
-	margin-bottom: 20px;
-	width: 100% !important;
+margin-bottom: 20px;
+width: 100% !important;
 }
 
 .btn-form{
-	width: 100% !important;
-	background-color: #8fcaca;
+width: 100% !important;
+background-color: #da9788;
 }
 
 .btn-form:hover{
-	background-color: #6da8a8;
+background-color: #b97566;
 }
 
 .card{

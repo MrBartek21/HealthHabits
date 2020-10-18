@@ -15,7 +15,7 @@
     
     echo $count;
     if($count<1){
-        $Connect->query("INSERT INTO userhabits VALUES (NULL, '$UserID', '$HabitsID', now(), now(), 0)");
+        $Connect->query("INSERT INTO userhabits VALUES (NULL, '$UserID', '$HabitsID', now(), now())");
         echo 'OK - Add: '.$HabitsID;
     }else{
         echo 'OK - Exist: '.$HabitsID;
