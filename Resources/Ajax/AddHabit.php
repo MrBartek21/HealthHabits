@@ -10,12 +10,12 @@
     
     print_r($_GET);
     
-    $result = mysqli_query($Connect, "SELECT * FROM userhabits WHERE UserID='$UserID' AND HabitsID='$HabitsID'");
+    $result = mysqli_query($Connect, "SELECT * FROM habitsuser WHERE UserID='$UserID' AND HabitsID='$HabitsID'");
     $count = $result->num_rows;
     
     echo $count;
     if($count<1){
-        $Connect->query("INSERT INTO userhabits VALUES (NULL, '$UserID', '$HabitsID', now(), now())");
+        $Connect->query("INSERT INTO habitsuser VALUES (NULL, '$UserID', '$HabitsID', now()");
         echo 'OK - Add: '.$HabitsID;
     }else{
         echo 'OK - Exist: '.$HabitsID;

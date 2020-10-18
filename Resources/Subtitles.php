@@ -48,15 +48,22 @@
     $SB['login_exist'] = "Istnieje juz użytkownik o takim loginie!";
     $SB['success_register'] = "Rejestracja zakończona sukcesem! Możesz się teraz zalogować.";
     
-    //f CompleteProfil
+    //f CompleteProfile
     $SB['empty_form'] = 'Nie podano wszystkich wymaganych danych!';
 
 
     //Ajax
-    $SB['email'] = "Email";
+    //$SB['email'] = "Email";
     //GetHabits.php
     $SB['zero_habbits'] = "Nie masz żadnych nawyków. Dodaj pare przyciskiem na dole.";
     $SB['no_update'] = "Brak aktywności.";
+
+    //UpdateHabits.php
+    $SB['cannot_be_updated'] = "Wykonałeś dzisiaj już ten nawyk.";
+    $SB['can_be_updated'] = "Brawo! Wykonałeś swój nawyk!";
+    
+
+
 
 
    // print_r($SB);

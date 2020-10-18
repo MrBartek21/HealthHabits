@@ -12,7 +12,7 @@
     $HabitsID = $row['ID'];
 
 
-    $Connect->query("UPDATE userhabits SET UpdateTime=now() WHERE UserID='$UserID' AND HabitsID='$HabitsID'");
+    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now())");
 
     $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
     $row = $result->fetch_assoc();
@@ -40,7 +40,7 @@
     $Connect->query("UPDATE persona SET CPM='$CPM' WHERE UserID='$UserID'");
     $Connect->query("UPDATE persona SET PAL='$PAL' WHERE UserID='$UserID'");
 
-    $Connect->query("INSERT INTO userhistory VALUES (NULL, '$UserID', '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', now())");
+    $Connect->query("INSERT INTO historypersona VALUES (NULL, '$UserID', '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', now())");
     
 
 

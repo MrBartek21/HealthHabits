@@ -60,7 +60,7 @@
         $PAL = PAL($PPM, $CPM);
 
         $Connect->query("UPDATE persona SET SumKCAL='$Kactivity', Score=Score+'$pkt', CPM='$CPM', PAL='$PAL' WHERE UserID='$UserID'");
-        $Connect->query("INSERT INTO user_activity VALUES (NULL, '$UserID', '$Aid', '$Time', '$kcal', now())");
+        $Connect->query("INSERT INTO useractivity VALUES (NULL, '$UserID', '$Aid', '$Time', '$kcal', now())");
     }
     
     function adjustBrightness($hex, $steps){
@@ -229,7 +229,7 @@
         
             if($Completed==0){
                 $Connect->query("INSERT INTO persona VALUES (NULL, '$UserID', '$pkt', 0, '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', '$PAL', '$Sex', '$Kactivity')");
-                $Connect->query("INSERT INTO userhistory VALUES (NULL, '$UserID', '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', now())");
+                $Connect->query("INSERT INTO historypersona VALUES (NULL, '$UserID', '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', now())");
                 $Connect->query("UPDATE users SET Completed=1 WHERE ID='$UserID'");
             }
         }else echo '<div class="alert alert-danger">'.$SB['empty_form'].'</div>';

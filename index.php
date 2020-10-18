@@ -84,11 +84,11 @@
 			</div>
 		</nav>
 
-		<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
+		<!-- <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
 			<div class="container" id="DailyHabits">
 				
 			</div>
-		</nav>
+		</nav>-->
 
 		<!-- AddHAbits -->
 		<div class="modal fade" id="AddHabits" tabindex="-1" role="dialog" aria-labelledby="AddHabitsLabel" aria-hidden="true">
@@ -179,6 +179,14 @@
                     });
                 });
 			}
+
+			function UpdateHabit(HabitsID, UserID){
+                $(document).ready(function(){
+                    $.get('Resources/Ajax/UpdateHabit.php', {HabitsID: HabitsID, UserID: UserID}, function(data){
+						console.log(data);
+                    });
+                });
+			}
         
             $(document).ready(function(){
 				$(document).on('submit', '#WeightForm', function(){
@@ -194,13 +202,6 @@
                     }
                 });
 
-				//Get Daily Habits
-                function GetDailyHabits(){
-                    $.get('Resources/Ajax/GetDailyHabits.php', function(data){
-                        $("#DailyHabits").html(data);
-                    });
-                }
-
 				//Get Habits
                 function GetHabits(){
                     $.get('Resources/Ajax/GetHabits.php', function(data){
@@ -210,10 +211,8 @@
 				
 
 				GetHabits();
-				GetDailyHabits();
                 setInterval(function(){
 					GetHabits();
-					GetDailyHabits();
                 },1000);
             });
         </script>
