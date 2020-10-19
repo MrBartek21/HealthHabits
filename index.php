@@ -118,9 +118,40 @@
 					</div>
 					<div class="modal-body">
 						<form action="#" method="post" class="form-inline mt-2 mt-md-0"  id="WeightForm" onSubmit="return false;">
-							<input class="form-control mr-1 form-100" type="number" name="WeightUpdate" id= "WeightUpdate" maxlength="4" placeholder="<?php echo $SB['weight'];?>">
+							<input class="form-control mr-1 form-100" type="number" name="WeightUpdate" id="WeightUpdate" maxlength="4" placeholder="<?php echo $SB['weight'];?>">
 							<button type="submit" class="btn btn-form"><?php echo $SB['complete_profil_btn'];?></button>
 						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- UpdateActivity -->
+		<div class="modal fade" id="UpdateActivity" tabindex="-1" role="dialog" aria-labelledby="UpdateActivityLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="UpdateActivityLabel"><?php echo $SB['weight_update']?></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<form action="#" method="post" class="form-inline mt-2 mt-md-0 mb-3"  id="ActivityForm" onSubmit="return false;">
+							<label for="hour" class="form-check-label">Godziny</label>
+							<input type="number" class="form-control mr-1 form-100" id="hour" placeholder="H" name="h" max="24">
+							<label for="min" class="form-check-label">Minuty</label>
+							<input type="number" class="form-control mr-1 form-100" id="min" placeholder="MIN" name="min"max="60">
+
+							<span class="text-uppercase pointer font-nav">Aktywności</span>
+							<input type="search" class="form-control mr-1 form-100 search" placeholder="Wyszukaj..." autofocus="autofocus"  onkeyup="showResult(this.value)">
+
+							<div id="livesearch"></div>
+							<button type="submit" class="btn btn-form">'.$SB['complete_profil_btn'].'</button>
+						</form>
+
+						<div id="ActivityFormY"></div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
@@ -171,6 +202,30 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
+			function showResult(str){
+				if(str.length==0){
+					document.getElementById("livesearch").innerHTML="";
+					document.getElementById("livesearch").style.border="0px";
+					return;
+				}
+				
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				
+				xmlhttp.onreadystatechange=function(){
+				if(this.readyState==4 && this.status==200){
+					document.getElementById("livesearch").innerHTML=this.responseText;
+					//document.getElementById("livesearch").style.border="1px solid #28a745";
+					//document.getElementById("livesearch").style.marginTop="3px";
+				}
+			  }
+				xmlhttp.open("GET","Resources/Ajax/LiveSearch.php?q="+str,true);
+				xmlhttp.send();
+			}
+
             function AddHabit(id, userid){
                 $(document).ready(function(){
                     $.get('Resources/Ajax/AddHabit.php', {id: id, userid: userid}, function(data){
@@ -196,6 +251,21 @@
                     if(Weight != ""){
                         $.get('Resources/Ajax/WeightUpdate.php', {Weight: Weight, UserID: UserID}, function(data){
 							$("#WeightForm").html(data);
+                        });
+                    }else{
+                        alert("Complete all fields!");
+                    }
+                });
+
+				$(document).on('submit', '#ActivityForm', function(){
+                    var Hour = $.trim($("#hour").val());
+					var Min = $.trim($("#min").val());
+					var Activity = $.trim($("#Activity").val());
+					var UserID = '<?php echo $UserID;?>';
+					
+                    if(Hour != ""){
+                        $.get('Resources/Ajax/ActivityUpdate.php', {Hour: Hour, Min: Min, Activity: Activity, UserID: UserID}, function(data){
+							$("#ActivityFormY").html(data);
                         });
                     }else{
                         alert("Complete all fields!");

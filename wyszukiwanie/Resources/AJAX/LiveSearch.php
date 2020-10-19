@@ -1,31 +1,32 @@
 <?php
 	session_start();
 	include("../Core/Connect.php");
-	include("../Functions.php");
 	
 	
 	$Querry = $_GET['q'];
 
 
-	$sth = mysqli_query($Connect_HH, "SELECT * FROM activitymet WHERE Name Like '$Querry%' ");
+	$sth = mysqli_query($Connect_HH, "SELECT * FROM products WHERE Name Like '$Querry%' LIMIT 10");
 	while($row=mysqli_fetch_assoc($sth)){
 		
 		$Name = $row['Name'];
 
-		$Result .= '<a class="dropdown-item">'.$Name.'</a><br>
+		$Result .= '
+		            <button type="button" class="btn btn-secondary">'.$Name.'</button><br>
 		            
+		            <!--
 		            <div class="form-group mb-3">
-		            <small id="podpowiedz" class="form-text text-muted col-sm-2" style="font-size:10">Podaj czas:</small>
+		            <small id="podpowiedz" class="form-text text-muted col-sm-2" style="font-size:10">Podaj ilość:</small>
 		                <div class="row">
-                            <input type="number" class="form-control" id="" placeholder="H" name="h" min="0" max="24">
-                            <input type="number" class="form-control" id="" placeholder="MIN" name="min" min="0" max="60">
-                            <button type="submit" class="btn btn-secondary" onclick="activity_kcal()">Dodaj</button>
+                            <input type="number" class="form-control" id="" placeholder="Ilość" name="" min="0" max="99" value="1">
+                            <button type="submit" class="btn btn-secondary"">Dodaj</button>
                         </div>
                     </div>
+                    -->
 		            ';
 	}
 	
-	if($Result=="") echo '<input type="button" class="dropdown-item" type="button" value="Nie znaleziono takiej aktywności"/>';
+	if($Result=="") echo '<input type="button" class="dropdown-item" type="button" value="Nie znaleziono takiego produktu"/>';
 	else echo $Result;
 	
 	

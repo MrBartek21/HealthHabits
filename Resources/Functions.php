@@ -42,7 +42,7 @@
     }
 
     //obliczanie i dodawanie aktywności do bazy danych
-    function activity_kcal($Connect, $Aid, $Time, $UserID){
+    function AddActivity($Connect, $Aid, $Time, $UserID){
         $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
 		$row = $result->fetch_assoc();
 		$Weight = $row['Weight'];

@@ -60,7 +60,7 @@
 			if($Type==2){
 				$Button = '<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#UpdateWeight">Aktualizuj</button>';
 			}elseif($Type==1){
-				$Button = '<button type="button" class="btn btn-success btn-block disabled">Nie działa</button>';
+				$Button = '<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#UpdateActivity">Wybierz</button>';
 			}else{
 				if($Series==1){
 					if($HabitsID==$IDWater){
