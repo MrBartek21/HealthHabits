@@ -25,6 +25,10 @@
     $SB['complete_profil_btn'] = "Aktualizuj";
     $SB['habits_add'] = "Dodaj nawyki";
     $SB['weight_update'] = "Dodaj dzisiejszą wagę";
+    $SB['activity_add'] = "Dodaj aktywność";
+    $SB['activity_hour'] = "Godziny";
+    $SB['activity_min'] = "Minuty";
+    $SB['activity'] = "Aktywność";
     
     $SB['sex_m'] = "Mężczyzna";
     $SB['sex_k'] = "Kobieta";

@@ -59,8 +59,10 @@
 
 			if($Type==2){
 				$Button = '<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#UpdateWeight">Aktualizuj</button>';
+				$Onclick = 'data-toggle="modal" data-target="#UpdateWeight"';
 			}elseif($Type==1){
 				$Button = '<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#UpdateActivity">Wybierz</button>';
+				$Onclick = 'data-toggle="modal" data-target="#UpdateActivity"';
 			}else{
 				if($Series==1){
 					if($HabitsID==$IDWater){
@@ -69,35 +71,44 @@
 						$OK = true;
 					}
 
-					if($OK) $Button = '<button type="button" class="btn btn-success btn-block disabled">Wykonano</button>';
-					else $Button = '<button type="button" class="btn btn-success btn-block" onClick="UpdateHabit('.$HabitsID.', '.$UserID.')">Wykonaj</button>';
+					if($OK){
+						$Button = '<button type="button" class="btn btn-success btn-block disabled">Wykonano</button>';
+						$Onclick = '';
+					}else{
+						$Button = '<button type="button" class="btn btn-success btn-block" onClick="UpdateHabit('.$HabitsID.', '.$UserID.')">Wykonaj</button>';
+						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.')"';
+					}
 					
 				}else{
 					$Button = '<button type="button" class="btn btn-success btn-block" onClick="UpdateHabit('.$HabitsID.', '.$UserID.')">Wykonaj</button>';
+					$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.')"';
 				}
 				
 			}
 
 			$List .= '
-			<div class="col-lg-12">
+			<div class="row">
+				<div class="col-8">
+					<figure class="figure">
+						<span class="fa-stack fa-2x figure-img pointer" '.$Onclick.'>
+							<i class="fa fa-circle fa-stack-2x" style="color: #'.$ColorDarker.';"></i>
+							<i class="'.$Icon.' fa-stack-1x"></i>
+						</span>
+						<B class="figure-img rounded">'.$Name.'</B>
+						<!--<figcaption class="figure-caption">'.$UpdateTime.'</figcaption>/--!>
+					</figure>
+				</div>
+				<!--<div class="col-4">'.$Button.'</div>/--!>
+				<div class="col-4">'.$UpdateTime.'</div>
+			</div>
+
+			<!--<div class="col-lg-12">
 				<div class="card h-100 card-curved-lg text-dark" style="background-color: #'.$Color.'; padding: 0px !important;">
 					<div class="card-body">
-						<div class="row">
-							<div class="col-8">
-								<figure class="figure">
-									<span class="fa-stack fa-2x figure-img">
-										<i class="fa fa-circle fa-stack-2x" style="color: #'.$ColorDarker.';"></i>
-										<i class="'.$Icon.' fa-stack-1x"></i>
-									</span>
-									<B class="figure-img rounded">'.$Name.'</B>
-									<figcaption class="figure-caption">'.$UpdateTime.'</figcaption>
-								</figure>
-							</div>
-							<div class="col-4">'.$Button.'</div>
-						</div>
+						
 					</div>
 				</div>
-			</div>';
+			</div>/--!>';
 
 			
 		}

@@ -12,7 +12,7 @@
 		$Name = $row['Name'];
 
 		$Result .= '
-		            <button type="button" class="btn btn-secondary">'.$Name.'</button><br>
+		            <button type="button" class="btn btn-secondary" onclick="alert()">'.$Name.'</button><br>
 		            
 		            <!--
 		            <div class="form-group mb-3">

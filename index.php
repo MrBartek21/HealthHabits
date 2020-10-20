@@ -139,16 +139,16 @@
 					</div>
 					<div class="modal-body">
 						<form action="#" method="post" class="form-inline mt-2 mt-md-0 mb-3"  id="ActivityForm" onSubmit="return false;">
-							<label for="hour" class="form-check-label">Godziny</label>
-							<input type="number" class="form-control mr-1 form-100" id="hour" placeholder="H" name="h" max="24">
-							<label for="min" class="form-check-label">Minuty</label>
-							<input type="number" class="form-control mr-1 form-100" id="min" placeholder="MIN" name="min"max="60">
+							<label for="hour" class="form-check-label"><?php echo $SB['activity_hour'];?></label>
+							<input type="number" class="form-control mr-1 form-100" id="hour" placeholder="H" name="h" value="0" max="24">
+							<label for="min" class="form-check-label"><?php echo $SB['activity_min'];?></label>
+							<input type="number" class="form-control mr-1 form-100" id="min" placeholder="MIN" name="min" value="0" max="60">
 
-							<span class="text-uppercase pointer font-nav">Aktywności</span>
+							<span class="text-uppercase pointer font-nav"><?php echo $SB['activity'];?></span>
 							<input type="search" class="form-control mr-1 form-100 search" placeholder="Wyszukaj..." autofocus="autofocus"  onkeyup="showResult(this.value)">
 
 							<div id="livesearch"></div>
-							<button type="submit" class="btn btn-form">'.$SB['complete_profil_btn'].'</button>
+							<button type="submit" class="btn btn-form"><?php echo $SB['activity_add'];?></button>
 						</form>
 
 						<div id="ActivityFormY"></div>
@@ -260,11 +260,12 @@
 				$(document).on('submit', '#ActivityForm', function(){
                     var Hour = $.trim($("#hour").val());
 					var Min = $.trim($("#min").val());
-					var Activity = $.trim($("#Activity").val());
+					var ActivityID = $.trim($("#Activity:checked").val());
+					var HabitsID = $.trim($("#HabitsID").val());
 					var UserID = '<?php echo $UserID;?>';
 					
                     if(Hour != ""){
-                        $.get('Resources/Ajax/ActivityUpdate.php', {Hour: Hour, Min: Min, Activity: Activity, UserID: UserID}, function(data){
+                        $.get('Resources/Ajax/ActivityUpdate.php', {Hour: Hour, Min: Min, ActivityID: ActivityID, UserID: UserID, HabitsID: HabitsID}, function(data){
 							$("#ActivityFormY").html(data);
                         });
                     }else{
