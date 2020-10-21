@@ -6,13 +6,14 @@
 	$Querry = $_GET['q'];
 
 
-	$sth = mysqli_query($Connect_HH, "SELECT * FROM products WHERE Name Like '$Querry%' LIMIT 10");
+	$sth = mysqli_query($Connect, "SELECT * FROM products WHERE Name Like '$Querry%' LIMIT 10");
 	while($row=mysqli_fetch_assoc($sth)){
 		
 		$Name = $row['Name'];
+		$ProductID = $row['ID'];
 
 		$Result .= '
-		            <button type="button" class="btn btn-secondary" onclick="alert()">'.$Name.'</button><br>
+		            <button type="button" class="btn btn-secondary" onclick="sendproducts('.$ProductID.')">'.$Name.'</button><br>
 		            
 		            <!--
 		            <div class="form-group mb-3">

@@ -61,6 +61,7 @@
 		<!-- Custom styles -->
 		<link href="CSS/Colors.css" rel="stylesheet">
 		<link href="CSS/Main.css" rel="stylesheet">
+		<link href="CSS/Slider.css" rel="stylesheet">
 		
 		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -76,7 +77,7 @@
 				<?php
 					echo '<a class="text-dark" href="profil.php">
 							<span class="fa-stack fa-2x">
-								<i class="fa fa-circle fa-stack-2x" style="color: #b4e5c5;"></i>
+								<i class="fa fa-circle fa-stack-2x" style="color: #da9788;"></i>
 								<i class="fas fa-user fa-stack-1x"></i>
 							</span>
 						</a>';
@@ -118,9 +119,11 @@
 					</div>
 					<div class="modal-body">
 						<form action="#" method="post" class="form-inline mt-2 mt-md-0"  id="WeightForm" onSubmit="return false;">
-							<input class="form-control mr-1 form-100" type="number" name="WeightUpdate" id="WeightUpdate" maxlength="4" placeholder="<?php echo $SB['weight'];?>">
+							<input class="form-control mr-1 form-100" type="number" name="WeightUpdate" id="WeightUpdate" maxlength="4" step="0.01" placeholder="<?php echo $SB['weight'];?>">
 							<button type="submit" class="btn btn-form"><?php echo $SB['complete_profil_btn'];?></button>
 						</form>
+
+						<br /><div id="WeightFormEnd"></div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
@@ -134,7 +137,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="UpdateActivityLabel"><?php echo $SB['weight_update']?></h5>
+						<h5 class="modal-title" id="UpdateActivityLabel"><?php echo $SB['activity_update']?></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body">
@@ -151,7 +154,7 @@
 							<button type="submit" class="btn btn-form"><?php echo $SB['activity_add'];?></button>
 						</form>
 
-						<div id="ActivityFormY"></div>
+						<div id="ActivityFormEnd"></div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
@@ -239,6 +242,9 @@
                 $(document).ready(function(){
                     $.get('Resources/Ajax/UpdateHabit.php', {HabitsID: HabitsID, UserID: UserID}, function(data){
 						console.log(data);
+
+						code = data.split(":");
+						$("#UpdateHabit"+code[0]).html(code[1]);
                     });
                 });
 			}
@@ -250,7 +256,7 @@
 					
                     if(Weight != ""){
                         $.get('Resources/Ajax/WeightUpdate.php', {Weight: Weight, UserID: UserID}, function(data){
-							$("#WeightForm").html(data);
+							$("#WeightFormEnd").html(data);
                         });
                     }else{
                         alert("Complete all fields!");
@@ -266,7 +272,7 @@
 					
                     if(Hour != ""){
                         $.get('Resources/Ajax/ActivityUpdate.php', {Hour: Hour, Min: Min, ActivityID: ActivityID, UserID: UserID, HabitsID: HabitsID}, function(data){
-							$("#ActivityFormY").html(data);
+							$("#ActivityFormEnd").html(data);
                         });
                     }else{
                         alert("Complete all fields!");
@@ -283,7 +289,7 @@
 
 				GetHabits();
                 setInterval(function(){
-					GetHabits();
+					//GetHabits();
                 },1000);
             });
         </script>

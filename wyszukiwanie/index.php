@@ -2,9 +2,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 
-    <body id="page-top">
-
-
+    <body>
+    
         <li class="nav-item text-uppercase nav-link dropdown-toggle pointer font-nav" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produkt</li>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
 								<form class="px-4 py-2">
@@ -12,7 +11,8 @@
 							</form>
 							<div class="menuItems" id="livesearch"></div>
 							</div>
-		
+							
+		<div id="SP"></div>
         
 		<!-- Ajax JS-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,22 +49,32 @@
 
         
         
+        function sendproducts(id){
+        
+            $(document).ready(function(){
+                $.get('Resources/AJAX/SendProducts.php', {ProductsID: id}, function(data){
+                    console.log(id);
+    
+                });
+            });
+        }
+        
         //odświeżanie co sek
         $(document).ready(function(){
-
-
-            //przerzut karty 
-            function activity_kcal(){
-                $.get('Resources/AJAX/LiveSearch.php', function(data){
+            //karty odpowiedzi
+            function showproducts(){
+                $.get('Resources/AJAX/ShowProducts.php', function(data){
+                    $("#SP").html(data);
                 });
             }
             
-
+            showproducts();
             setInterval(function(){
-        	    activity_kcal();
-        	    //console.log('123');
+        	    showproducts();
             },1000);
         });
+        
+        
 
 
 		

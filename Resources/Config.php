@@ -10,7 +10,7 @@
     $Connect->set_charset("utf-8");
     
 	
-	$Link = "http://".$_SERVER['SERVER_NAME'];
+	$Link = "http://".$_SERVER['SERVER_NAME'].'/healthhabbits';
 	$Keywords = "habits, health, game";
 	$Author = "Bartłomiej Pacyna, Patryk Ignasiak, Noemi Ignaczak, Adrian Sobiela";
 	

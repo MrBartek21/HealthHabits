@@ -29,6 +29,7 @@
     $SB['activity_hour'] = "Godziny";
     $SB['activity_min'] = "Minuty";
     $SB['activity'] = "Aktywność";
+    $SB['activity_update'] = "Dodaj dzisiejszą aktywność";
     
     $SB['sex_m'] = "Mężczyzna";
     $SB['sex_k'] = "Kobieta";
@@ -64,7 +65,12 @@
 
     //UpdateHabits.php
     $SB['cannot_be_updated'] = "Wykonałeś dzisiaj już ten nawyk.";
-    $SB['can_be_updated'] = "Brawo! Wykonałeś swój nawyk!";
+    $SB['habits_updated_m'] = "Brawo! Wykonałeś swój nawyk!";
+    $SB['habits_updated_k'] = "Brawo! Wykonałaś swój nawyk!";
+
+    //ActivityUpdate.php
+    $SB['activity_updated_m'] = "Brawo! Wykonałeś aktywność fizyczną";
+    $SB['activity_updated_k'] = "Brawo! Wykonałaś aktywność fizyczną";
     
 
 
