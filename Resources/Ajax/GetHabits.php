@@ -20,6 +20,7 @@
 			if($UpdateTime==""){
 				$UpdateTime = $SB['no_update'];
 				$Series = 0;
+				$Precent = 0;
 			}else{
 				$timestamp = strtotime($UpdateTime);
 				$UpdateDay = date('d', $timestamp);
@@ -32,14 +33,18 @@
 	
 				if($YearNow-$UpdateYear>0){
 					$Series = 0;
+					$Precent = 0;
 				}else{
 					if($MonthNow-$UpdateMonth>0){
 						$Series = 0;
+						$Precent = 0;
 					}else{
 						if($DayNow-$UpdateDay>0){
 							$Series = 0;
+							$Precent = 0;
 						}else{
 							$Series = 1;
+							$Precent = 100;
 						}
 					}
 				}
@@ -66,17 +71,16 @@
 			}else{
 				if($Series==1){
 					if($HabitsID==$IDWater){
-						$OK = false;
-					}else{
-						$OK = true;
-					}
-
-					if($OK){
-						$Onclick = '';
-						$Pointer = '';
-					}else{
 						$Pointer = 'pointer';
 						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.')"';
+
+						$result3 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$IDWater' AND `UserID` = '$UserID'");
+						$row = $result3->fetch_assoc();
+						$Count = $row['COUNT(*)'];
+						$Precent = round(($Count/6)*100);
+					}else{
+						$Onclick = '';
+						$Pointer = '';
 					}
 					
 				}else{
@@ -86,44 +90,31 @@
 				
 			}
 
-			$expUVR = round($expUV);
+			if($Precent>=50 && $Precent<75) $ProgressBar = "yellow";
+			elseif($Precent>=75 && $Precent<99) $ProgressBar = "blue";
+			elseif($Precent>99) $ProgressBar = "green";
+			else $ProgressBar = "red";
 
 			$List .= '
 			<div class="row">
 				<div class="col-8">
 					<figure class="figure">
-
-					<div class="progress blue">
-								<span class="progress-left">
-									<span class="progress-bar"></span>
-								</span>
-								<span class="progress-right">
-									<span class="progress-bar"></span>
-								</span>
-								<div class="progress-value">90%</div>
-							</div>
-
 						<span class="fa-stack fa-2x figure-img '.$Pointer.'" '.$Onclick.'>
-							<i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.'; z-index: 50000;"></i>
-							<i class="'.$Icon.' fa-stack-1x" style="z-index: 50000;"></i>
+							<i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.';"></i>
+							<i class="'.$Icon.' fa-stack-1x"></i>
 						</span>
 						<B class="figure-img rounded">'.$Name.'</B>
-						<!--<figcaption class="figure-caption">'.$UpdateTime.'</figcaption>/--!>
 					</figure>
-				</div>
-				<!--<div class="col-4">'.$Button.'</div>/--!>
-				<div class="col-4">'.$UpdateTime.' <span id="UpdateHabit'.$HabitsID.'"></span></div>
-			</div>
 
-			<!--<div class="col-lg-12">
-				<div class="card h-100 card-curved-lg text-dark" style="background-color: #'.$Color.'; padding: 0px !important;">
-					<div class="card-body">
-						
+				</div>
+				<!--<div class="col-4">'.$UpdateTime.' <span id="UpdateHabit'.$HabitsID.'"></span></div>/--!>
+				<div class="col-4">
+					<div class="progress" style="margin-top: 25px;">
+						<div class="progress-bar" role="progressbar" aria-valuenow="'.$Precent.'"
+						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%; background-color: '.$ProgressBar.';">'.$Precent.'%</div>
 					</div>
 				</div>
-			</div>/--!>';
-
-			
+			</div>';
 		}
 
 		echo $List;

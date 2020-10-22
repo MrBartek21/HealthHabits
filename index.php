@@ -61,7 +61,6 @@
 		<!-- Custom styles -->
 		<link href="CSS/Colors.css" rel="stylesheet">
 		<link href="CSS/Main.css" rel="stylesheet">
-		<link href="CSS/Slider.css" rel="stylesheet">
 		
 		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -289,7 +288,7 @@
 
 				GetHabits();
                 setInterval(function(){
-					//GetHabits();
+					GetHabits();
                 },1000);
             });
         </script>
