@@ -93,12 +93,7 @@
 				<div class="col-8">
 					<figure class="figure">
 
-						<span class="fa-stack fa-2x figure-img '.$Pointer.'" '.$Onclick.'>
-							<i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.'; z-index: 50000;"></i>
-							<i class="'.$Icon.' fa-stack-1x" style="z-index: 50000;"></i>
-
-
-							<div class="progress blue">
+					<div class="progress blue">
 								<span class="progress-left">
 									<span class="progress-bar"></span>
 								</span>
@@ -108,7 +103,9 @@
 								<div class="progress-value">90%</div>
 							</div>
 
-							
+						<span class="fa-stack fa-2x figure-img '.$Pointer.'" '.$Onclick.'>
+							<i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.'; z-index: 50000;"></i>
+							<i class="'.$Icon.' fa-stack-1x" style="z-index: 50000;"></i>
 						</span>
 						<B class="figure-img rounded">'.$Name.'</B>
 						<!--<figcaption class="figure-caption">'.$UpdateTime.'</figcaption>/--!>
