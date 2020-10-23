@@ -242,8 +242,8 @@
                     $.get('Resources/Ajax/UpdateHabit.php', {HabitsID: HabitsID, UserID: UserID}, function(data){
 						console.log(data);
 
-						code = data.split(":");
-						$("#UpdateHabit"+code[0]).html(code[1]);
+						//code = data.split(":");
+						//$("#UpdateHabit"+code[0]).html(code[1]);
                     });
                 });
 			}

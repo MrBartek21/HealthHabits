@@ -33,7 +33,14 @@
 		$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
 		$row = $result->fetch_assoc();
 		$Weight = $row['Weight'];
-		$Height = $row['Height'];
+        $Height = $row['Height'];
+        
+        $result = mysqli_query($Connect, "SELECT * FROM historypersona WHERE UserID='$UserID' LIMIT 10");
+		while($row=mysqli_fetch_array($result)){
+            $Weight = $row['Weight'];
+            $Date = $row['Date'];
+            $WeightTable .= "['$Date', $Weight],";
+        }
 	}else{
 		header('Location: login.php');
 	}
@@ -81,8 +88,6 @@
         
         <title><?php echo $SB['profil_page'].' - '.$Title;?></title>
 
-
-
         <!--Load the AJAX API-->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
@@ -92,21 +97,13 @@
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Topping');
                 data.addColumn('number', 'kg');
-                data.addRows([
-                ['Dzień 1', 80],
-                ['Tydzień 1', 79],
-                ['Tydzień 2', 79],
-                ['Tydzień 3', 78.5],
-                ['Tydzień 4', 78]
-                ]);
+                data.addRows([<?php echo $WeightTable;?>]);
 
                 var options = {
                     pointsVisible: true,
                     backgroundColor: {fill:'transparent'},
                     legend: 'none',
-                    series: {
-                        0: {color: '#e2431e'}
-                        }
+                    series: {0: {color: '#e2431e'}}
                     };
 
                 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
@@ -155,7 +152,7 @@
 				<div class="col-lg-12">
 					<div class="row">
 
-                        <div class="col-sm-12" style="margin-bottom: 20px; /*margin-top: 40px;*/">
+                        <div class="col-sm-12" style="margin-bottom: 30px;">
                             <div class="card card-curved-lg text-dark p-4" style="box-shadow: 0px 0px 20px 20px #ffffff82; border: none !important; background-color: #ffffff82 !important;">
                                 <div class="row">
                                     <div class="col-5"></div>
@@ -177,15 +174,13 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12" style="margin-bottom: 20px;">
-                            <!--<div class="card card-curved-lg text-dark bg-orange p-4">/-->
-                                <h4 class="card-title text-center"><B>Zmiana wagi:</B></h4>
-                                <div id="chart_div"></div>
-                            <!--</div>/-->
+                        <div class="col-sm-12" style="margin-bottom: 50px;">
+                            <h4 class="card-title text-center"><B>Zmiana wagi:</B></h4>
+                            <div id="chart_div"></div>
                         </div>
 
                         <div class="col-sm-12">
-                            <div class="card card-curved-lg text-dark bg-orange p-4">
+                            <div class="card card-curved-lg text-dark p-4" style="box-shadow: 0px 0px 20px 20px #ffffff82; border: none !important; background-color: #ffffff82 !important;">
                                 <div class="card-block">
                                     <h4 class="card-title text-center">Poziom wytrwalosci</h4>
                                     <p class="card-text"><?php echo 'Wzrost: <B>'.$Weight.'</B>'; ?></p>
@@ -206,10 +201,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
-
                 $(window).resize(function(){
-                drawChart();
-            });
+                    drawChart();
+                });
+
+
 				//Get Habits
                 function GetHabits(){
                     $.get('Resources/Ajax/GetHabits.php', function(data){
@@ -217,7 +213,6 @@
                     });
                 }
 				
-
 				GetHabits();
                 setInterval(function(){
 					GetHabits();

@@ -97,7 +97,7 @@
 
 			$List .= '
 			<div class="row">
-				<div class="col-8">
+				<div class="col-12">
 					<figure class="figure">
 						<span class="fa-stack fa-2x figure-img '.$Pointer.'" '.$Onclick.'>
 							<i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.';"></i>
@@ -105,15 +105,15 @@
 						</span>
 						<B class="figure-img rounded">'.$Name.'</B>
 					</figure>
-
-				</div>
-				<!--<div class="col-4">'.$UpdateTime.' <span id="UpdateHabit'.$HabitsID.'"></span></div>/--!>
-				<div class="col-4">
-					<div class="progress" style="margin-top: 25px;">
+					<div class="progress" style="margin-bottom: 25px; border: solid 2px #da9788; background-color: #ffc5bf">
 						<div class="progress-bar" role="progressbar" aria-valuenow="'.$Precent.'"
 						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%; background-color: '.$ProgressBar.';">'.$Precent.'%</div>
 					</div>
 				</div>
+				<!--<div class="col-4">'.$UpdateTime.' <span id="UpdateHabit'.$HabitsID.'"></span></div>
+				<div class="col-4">
+					
+				</div>/--!>
 			</div>';
 		}
 

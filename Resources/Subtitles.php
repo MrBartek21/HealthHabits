@@ -1,6 +1,7 @@
 <?php
     $SB['login_page'] = "Konto";
     $SB['main_page'] = "Strona główna";
+    $SB['profil_page'] = "Profil";
 
 
     $SB['close_btn'] = "Zamknij";

@@ -10,12 +10,12 @@
 
     $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now())");
     $Connect->query("UPDATE persona SET Score=Score+5 WHERE UserID='$UserID'");
-    echo $SB['can_be_updated'];
+    echo $SB['habits_updated_m'];
 
-    $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+    /*$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
 	$row = $result->fetch_assoc();
     $Sex = $row['Sex'];	
 
-    if($Sex=='K') echo $HabitsID.':<div class="alert alert-success text-center" role="alert">'.$SB['habits_updated_k'].'</div>';
-    else echo $HabitsID.':<div class="alert alert-success text-center" role="alert">'.$SB['habits_updated_m'].'</div>';
+    if($Sex=='K') echo '<div class="alert alert-success text-center" role="alert">'.$SB['habits_updated_k'].'</div>';
+    else echo '<div class="alert alert-success text-center" role="alert">'.$SB['habits_updated_m'].'</div>';*/
 ?>
