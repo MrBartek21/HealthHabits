@@ -110,10 +110,7 @@
 						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%; background-color: '.$ProgressBar.';">'.$Precent.'%</div>
 					</div>
 				</div>
-				<!--<div class="col-4">'.$UpdateTime.' <span id="UpdateHabit'.$HabitsID.'"></span></div>
-				<div class="col-4">
-					
-				</div>/--!>
+				<hr>
 			</div>';
 		}
 

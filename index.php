@@ -69,22 +69,22 @@
 	</head>
 	<body>
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-navbar">
+		<!--<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-navbar">
 			<div class="container">
 				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="30" height="30" alt="Menu"> <?php echo $Title;?></a>
 			
 				<?php
-					echo '<a class="text-dark" href="profil.php">
+					/*echo '<a class="text-dark" href="profil.php">
 							<span class="fa-stack fa-2x">
 								<i class="fa fa-circle fa-stack-2x" style="color: #da9788;"></i>
 								<i class="fas fa-user fa-stack-1x"></i>
 							</span>
-						</a>';
+						</a>';*/
 				?>
 			</div>
 		</nav>
 
-		<!-- <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
+		 <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
 			<div class="container" id="DailyHabits">
 				
 			</div>
@@ -170,7 +170,7 @@
 						<?php
 							if($UserOK){
 								echo '<span id="Habits"></span>
-								<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits" style="bottom: 50px; position: sticky;">
+								<span class="fa-stack " data-toggle="modal" data-target="#AddHabits" style="top: 20px; right: 20px; position: fixed;">
 									<i class="fa fa-circle fa-stack-2x" style="color: #6e9f7f;"></i>
 									<i class="fas fa-plus fa-stack-1x"></i>
 								</span>';
@@ -197,6 +197,32 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Footer -->
+		<footer class="py-2 bg-footer text-dark fixed-bottom text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-4">
+						<a href="profil.php"><span class="fa-stack fa-2x">
+							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
+							<i class="fas fa-user fa-stack-1x" style="color: #000;"></i>
+						</span></a>
+					</div>
+					<div class="col-4">
+						<a href="index.php"><span class="fa-stack fa-2x">
+							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
+							<i class="fas fa-plus fa-stack-1x" style="color: #000;"></i>
+						</span></a>
+					</div>
+					<div class="col-4">
+						<a href="game.php"><span class="fa-stack fa-2x">
+							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
+							<i class="fas fa-seedling fa-stack-1x" style="color: #000;"></i>
+						</span></a>
+					</div>
+				</div>
+			</div>
+		</footer>
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="Vendor/jquery/jquery.min.js"></script>
