@@ -62,7 +62,7 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-navbar">
 			<div class="container">
-				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="30" height="30" alt="Menu"> <?php echo $Title;?></a>
+				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="40" height="40" alt="Menu"> <?php echo $Title;?></a>
 			</div>
 		</nav>
 
