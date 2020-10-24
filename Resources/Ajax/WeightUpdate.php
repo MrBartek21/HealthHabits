@@ -7,12 +7,7 @@
     $Weight = $_GET['Weight'];
     $UserID = $_GET['UserID'];
     
-    $result = mysqli_query($Connect, "SELECT * FROM habits WHERE Name='Waga'");
-    $row = $result->fetch_assoc();
-    $HabitsID = $row['ID'];
-
-
-    $result2 = mysqli_query($Connect, "SELECT * FROM historyhabits WHERE UserID='$UserID' AND HabitsID='$HabitsID' ORDER BY ID DESC");
+    $result2 = mysqli_query($Connect, "SELECT * FROM historyhabits WHERE UserID='$UserID' AND HabitsID='$WeightID' ORDER BY ID DESC");
     $row = $result2->fetch_assoc();
 	$UpdateTime = $row['UpdateTime'];
     $Series = $row['Series'];
@@ -38,7 +33,7 @@
 		}
     }
 
-    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), '$Series')");
+    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$WeightID', now(), '$Series')");
 
     $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
     $row = $result->fetch_assoc();

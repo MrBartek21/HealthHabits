@@ -58,10 +58,6 @@
 			$Color = $row['Color'];
 			$Icon = $row['Icon'];
 
-			$result3 = mysqli_query($Connect, "SELECT * FROM habits WHERE Name='Woda'");
-			$row = $result3->fetch_assoc();
-			$IDWater = $row['ID'];
-
 			if($Type==2){
 				$Pointer = 'pointer';
 				$Onclick = 'data-toggle="modal" data-target="#UpdateWeight"';
@@ -74,11 +70,11 @@
 				$Count = $row['COUNT(*)'];
 
 				if($Count>=1){
-					if($HabitsID==$IDWater){
+					if($HabitsID==$WaterID){
 						$Pointer = 'pointer';
 						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')"';
 
-						$result3 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$IDWater' AND `UserID` = '$UserID'");
+						$result3 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$WaterID' AND `UserID` = '$UserID'");
 						$row = $result3->fetch_assoc();
 						$Count = $row['COUNT(*)'];
 						$Precent = round(($Count/6)*100);

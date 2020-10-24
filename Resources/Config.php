@@ -6,7 +6,11 @@
 	$DB_Name = "p_healthhabbits";
 	
 	$Connect = @new mysqli($Host, $DB_User, $DB_Password, $DB_Name);
-    $Connect->set_charset("utf-8");
+	$Connect->set_charset("utf-8");
+	
+	$WeightID = 1;
+	$WaterID = 4;
+	$ActivityID = 2;
     
 	
 	$Link = "http://".$_SERVER['SERVER_NAME'].'/healthhabbits';
