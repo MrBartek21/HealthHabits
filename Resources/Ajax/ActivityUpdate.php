@@ -60,6 +60,8 @@
 
     $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), $Series)");
 
+    PlantLevel($Connect, $UserID);
+
     if($Sex=='K') echo '<div class="alert alert-success text-center" role="alert">'.$SB['activity_updated_k'].'</div>';
     else echo '<div class="alert alert-success text-center" role="alert">'.$SB['activity_updated_m'].'</div>';
 
