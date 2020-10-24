@@ -12,9 +12,13 @@
 	if(isset($_SESSION['HH_Logged'])){
 		$UserID = $_SESSION['HH_ID'];
         $UserName = $_SESSION['HH_User'];
+
+        $Plant = SizePlant($Connect, $UserID);
+
+        $Src = $Plant.'1.png';
 	}else{
 		header('Location: login.php');
-	}
+    }
 ?>
 
 <!DOCTYPE html>
@@ -58,31 +62,11 @@
         
         <title><?php echo $SB['game_page'].' - '.$Title;?></title>
 	</head>
-	<body>
+	<body style="padding: 0px;">
 		<!-- Page Content -->
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="row">
-
-                        <div class="col-sm-12" style="margin-bottom: 30px;">
-                            <div class="card card-curved-lg text-dark p-4">
-                                <div class="row">
-                                    <div class="col-5"></div>
-                                    <div class="col-2"><img class="card-img-top img-fluid rounded-circle" src="<?php echo $UserAvatar; ?>" alt="<?php echo $UserName; ?>"></div>
-                                    <div class="col-5"></div>
-                                </div>
-
-                                <div class="card-block">
-                                    <p class="card-text"><?php echo '<h3 class="text-center"><B>gfdgdf</B></h3>'; ?></p>
-                                    <p class="card-text text-center"><?php echo '<B>gdfgdf</B>'; ?></p>
-                                </div>
-                            </div>
-                        </div>
-
-					</div>
-				</div>
-			</div>
+        <div class="container text-center" style="padding: 0px;">
+            <img src="Graphic/Game/Background.gif" class="img-fluid" style=" position: absolute;">
+            <img src="Graphic/Game/<?php echo $Src;?>" class="img-fluid" style=" position: relative;">
         </div>
         
         <!-- Footer -->
