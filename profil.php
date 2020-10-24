@@ -30,14 +30,15 @@
         $UserLastLogin = $row['LastLogin'];
         
         //Persona Info
-		$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
-		$row = $result->fetch_assoc();
-		$Weight = $row['Weight'];
-        $Height = $row['Height'];
+		//$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+		//$row = $result->fetch_assoc();
+		//$Weight = $row['Weight'];
+        //$Height = $row['Height'];
         
         $result = mysqli_query($Connect, "SELECT * FROM historypersona WHERE UserID='$UserID' LIMIT 10");
 		while($row=mysqli_fetch_array($result)){
             $Weight = $row['Weight'];
+            $Height = $row['Height'];
             $Date = $row['Date'];
             $WeightTable .= "['$Date', $Weight],";
         }
@@ -80,7 +81,6 @@
 		<link href="Vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		
 		<!-- Custom styles -->
-		<link href="CSS/Colors.css" rel="stylesheet">
 		<link href="CSS/Main.css" rel="stylesheet">
 		
 		
@@ -112,22 +112,6 @@
         </script>
 	</head>
 	<body>
-		<!-- Navigation -->
-		<!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-navbar">
-			<div class="container">
-				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="30" height="30" alt="Menu"> <?php echo $Title;?></a>
-			
-				<?php
-					/*echo '<a class="text-dark" href="profil.php">
-							<span class="fa-stack fa-2x">
-								<i class="fa fa-circle fa-stack-2x" style="color: #da9788;"></i>
-								<i class="fas fa-user fa-stack-1x"></i>
-							</span>
-						</a>';*/
-				?>
-			</div>
-		</nav>-->
-
 		<!-- AddHAbits -->
 		<div class="modal fade" id="AddHabits" tabindex="-1" role="dialog" aria-labelledby="AddHabitsLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -200,19 +184,19 @@
 				<div class="row">
 					<div class="col-4">
 						<a href="profil.php"><span class="fa-stack fa-2x">
-							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
+							<i class="far fa-circle fa-stack-2x"></i>
 							<i class="fas fa-user fa-stack-1x"></i>
 						</span></a>
 					</div>
 					<div class="col-4">
 						<a href="index.php"><span class="fa-stack fa-2x">
-							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
+							<i class="far fa-circle fa-stack-2x"></i>
 							<i class="fas fa-plus fa-stack-1x"></i>
 						</span></a>
 					</div>
 					<div class="col-4">
 						<a href="game.php"><span class="fa-stack fa-2x">
-							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
+							<i class="far fa-circle fa-stack-2x"></i>
 							<i class="fas fa-seedling fa-stack-1x"></i>
 						</span></a>
 					</div>
@@ -230,19 +214,6 @@
                 $(window).resize(function(){
                     drawChart();
                 });
-
-
-				//Get Habits
-                function GetHabits(){
-                    $.get('Resources/Ajax/GetHabits.php', function(data){
-                        $("#Habits").html(data);
-                    });
-                }
-				
-				GetHabits();
-                setInterval(function(){
-					GetHabits();
-                },1000);
             });
         </script>
 	</body>

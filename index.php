@@ -59,7 +59,6 @@
 		<link href="Vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		
 		<!-- Custom styles -->
-		<link href="CSS/Colors.css" rel="stylesheet">
 		<link href="CSS/Main.css" rel="stylesheet">
 		
 		
@@ -69,25 +68,8 @@
 	</head>
 	<body>
 		<!-- Navigation -->
-		<!--<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-navbar">
-			<div class="container">
-				<a class="navbar-brand text-dark" href="<?php echo $Link;?>"><IMG src="Graphic/Navbar.png" class="d-inline-block mr-sm-1 align-bottom" width="30" height="30" alt="Menu"> <?php echo $Title;?></a>
-			
-				<?php
-					/*echo '<a class="text-dark" href="profil.php">
-							<span class="fa-stack fa-2x">
-								<i class="fa fa-circle fa-stack-2x" style="color: #da9788;"></i>
-								<i class="fas fa-user fa-stack-1x"></i>
-							</span>
-						</a>';*/
-				?>
-			</div>
-		</nav>
-
-		 <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
-			<div class="container" id="DailyHabits">
-				
-			</div>
+		<!--<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
+			<div class="container" id="DailyHabits"></div>
 		</nav>-->
 
 		<!-- AddHAbits -->
@@ -170,7 +152,7 @@
 						<?php
 							if($UserOK){
 								echo '<span id="Habits"></span>
-								<span class="fa-stack " data-toggle="modal" data-target="#AddHabits" style="top: 20px; right: 20px; position: fixed;">
+								<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits" style="top: 20px; right: 20px; position: fixed;">
 									<i class="fa fa-circle fa-stack-2x" style="color: #6e9f7f;"></i>
 									<i class="fas fa-plus fa-stack-1x"></i>
 								</span>';
@@ -204,20 +186,20 @@
 				<div class="row">
 					<div class="col-4">
 						<a href="profil.php"><span class="fa-stack fa-2x">
-							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
-							<i class="fas fa-user fa-stack-1x" style="color: #000;"></i>
+							<i class="far fa-circle fa-stack-2x"></i>
+							<i class="fas fa-user fa-stack-1x"></i>
 						</span></a>
 					</div>
 					<div class="col-4">
 						<a href="index.php"><span class="fa-stack fa-2x">
-							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
-							<i class="fas fa-plus fa-stack-1x" style="color: #000;"></i>
+							<i class="far fa-circle fa-stack-2x"></i>
+							<i class="fas fa-plus fa-stack-1x"></i>
 						</span></a>
 					</div>
 					<div class="col-4">
 						<a href="game.php"><span class="fa-stack fa-2x">
-							<i class="far fa-circle fa-stack-2x" style="color: #b87566;"></i>
-							<i class="fas fa-seedling fa-stack-1x" style="color: #000;"></i>
+							<i class="far fa-circle fa-stack-2x"></i>
+							<i class="fas fa-seedling fa-stack-1x"></i>
 						</span></a>
 					</div>
 				</div>
@@ -257,7 +239,6 @@
             function AddHabit(id, userid){
                 $(document).ready(function(){
                     $.get('Resources/Ajax/AddHabit.php', {id: id, userid: userid}, function(data){
-                        //$("#UserInfo").html(data);
 						console.log(data);
                     });
                 });
@@ -267,9 +248,6 @@
                 $(document).ready(function(){
                     $.get('Resources/Ajax/UpdateHabit.php', {HabitsID: HabitsID, UserID: UserID}, function(data){
 						console.log(data);
-
-						//code = data.split(":");
-						//$("#UpdateHabit"+code[0]).html(code[1]);
                     });
                 });
 			}

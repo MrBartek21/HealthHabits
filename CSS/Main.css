@@ -32,7 +32,7 @@
 
 body{
 	padding-top: 20px;
-	padding-bottom: 90px;
+	padding-bottom: 110px;
 	color: #424242;
 	background-color: #ffc5bf;
 
@@ -68,13 +68,6 @@ body{
 .pointer{cursor: pointer;}
 
 
-.container-footer{
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-    background-color: #494b5f;
-}
-
 .closebtn{
 	margin-left: 15px;
 	color: white;
@@ -88,3 +81,5 @@ body{
 
 .closebtn:hover{color: black;}
 
+.fa-stack-1x{color: #000;}
+.fa-stack-2x{color: #b87566;}
