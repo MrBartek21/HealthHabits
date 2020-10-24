@@ -68,6 +68,8 @@
 
     $Connect->query("INSERT INTO historypersona VALUES (NULL, '$UserID', '$Weight', '$Height', '$MinWater', '$BMI', '$LBM', '$PPM', '$CPM', now())");
 
+    PlantLevel($Connect, $UserID);
+
     if($Sex=='K') echo '<div class="alert alert-success text-center" role="alert">'.$SB['habits_updated_k'].'</div>';
     else echo '<div class="alert alert-success text-center" role="alert">'.$SB['habits_updated_m'].'</div>';
 ?>
