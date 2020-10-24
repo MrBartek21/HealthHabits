@@ -40,22 +40,6 @@
         $PAL = round($PAL, 2);
         return $PAL;   
     }
-    
-    function adjustBrightness($hex, $steps){
-        $steps = max(-255, min(255, $steps));
-    
-        $hex = str_replace('#', '', $hex);
-        if(strlen($hex) == 3)$hex = str_repeat(substr($hex,0,1), 2).str_repeat(substr($hex,1,1), 2).str_repeat(substr($hex,2,1), 2);
-        
-        $color_parts = str_split($hex, 2);
-    
-        foreach($color_parts as $color){
-            $color   = hexdec($color);
-            $color   = max(0,min(255,$color + $steps));
-            $return .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT);
-        }
-        return $return;
-    }
 
     function login($Connect, $Login, $Pass){
         mysqli_report(MYSQLI_REPORT_STRICT);
@@ -221,13 +205,12 @@
 			$Type = $row['Type'];
 			$Color = $row['Color'];
 			$Icon = $row['Icon'];
-			$ColorDarker = adjustBrightness($Color, -40);
 
             $List .= '
                 <div class="row">
                     <div class="col-2">
                         <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x" style="color: #'.$ColorDarker.';"></i>
+                            <i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.';"></i>
                             <i class="'.$Icon.' fa-stack-1x"></i>
                         </span>
                     </div>
@@ -240,4 +223,36 @@
         
         echo $List;
     }
+
+    function PlantLevel($Connect, $UserID){
+        $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+    	$row = $result->fetch_assoc();
+		$Score = $row['Score'];
+
+        $Level = intval($Score/25);
+
+        $Connect->query("UPDATE persona SET Level='$Level' WHERE UserID='$UserID'");
+    }
+
+    function SizePlant($Connect, $UserID){
+        $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+    	$row = $result->fetch_assoc();
+		$Level = $row['Level'];
+
+        if($Level<25) $return = "M";
+        else $return = "D";
+
+        return $return;
+    }
+
+    function DryPlant($Connect, $UserID){
+        $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+    	$row = $result->fetch_assoc();
+		$Min_water = $row['Min_water'];
+
+        $water=0; //suma wypitej wody w danym dniu
+        if($water<$Min_water/2) echo 'sucho';
+        else echo 'normalne';
+    }
+
 ?>
