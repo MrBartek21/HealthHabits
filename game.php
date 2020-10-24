@@ -14,8 +14,9 @@
         $UserName = $_SESSION['HH_User'];
 
         $Plant = SizePlant($Connect, $UserID);
+        $Water = DryPlant($Connect, $UserID, $WaterID);
 
-        $Src = $Plant.'1.png';
+        $Src = $Plant.$Water.'1.png';
 	}else{
 		header('Location: login.php');
     }

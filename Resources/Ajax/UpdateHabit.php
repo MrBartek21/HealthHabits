@@ -8,9 +8,10 @@
     $UserID = $_GET['UserID'];
     $Series = $_GET['Series'];
 
-
-    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), '$Series')");
+    if($HabitsID==$WaterID) $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), '$Series', 100)");
+    else $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), '$Series', 0)");
+    
     $Connect->query("UPDATE persona SET Score=Score+5 WHERE UserID='$UserID'");
     PlantLevel($Connect, $UserID);
-    echo "OK";
+    echo "OK: ".$HabitsID;
 ?>

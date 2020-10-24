@@ -33,7 +33,7 @@
 		}
     }
 
-    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$WeightID', now(), '$Series')");
+    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$WeightID', now(), '$Series', 0)");
 
     $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
     $row = $result->fetch_assoc();

@@ -19,7 +19,6 @@
 			$Series = $row['Series'];
 
 			if($UpdateTime==""){
-				$UpdateTime = $SB['no_update'];
 				$Series = 1;
 				$Precent = 0;
 			}else{
@@ -58,6 +57,8 @@
 			$Color = $row['Color'];
 			$Icon = $row['Icon'];
 
+			$ProgressText = $Precent."%";
+
 			if($Type==2){
 				$Pointer = 'pointer';
 				$Onclick = 'data-toggle="modal" data-target="#UpdateWeight"';
@@ -74,20 +75,21 @@
 						$Pointer = 'pointer';
 						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')"';
 
-						$result3 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$WaterID' AND `UserID` = '$UserID'");
-						$row = $result3->fetch_assoc();
-						$Count = $row['COUNT(*)'];
-						$Precent = round(($Count/6)*100);
+
+						$result6 = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
+    					$row = $result6->fetch_assoc();
+						$Min_water = $row['Min_water'];
+						$Water = GetWater($Connect, $UserID, $WaterID);
+						$Precent = round(($Water/$Min_water)*100);
+						$ProgressText = $Water."ml / ".$Min_water."ml";
 					}else{
 						$Onclick = '';
 						$Pointer = '';
 					}
-					
 				}else{
 					$Pointer = 'pointer';
 					$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')"';
 				}
-				
 			}
 
 			$List .= '
@@ -102,15 +104,12 @@
 					</figure>
 					<div class="progress">
 						<div class="progress-bar text-dark" role="progressbar" aria-valuenow="'.$Precent.'"
-						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%;"><B>'.$Precent.'%</B></div>
+						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%;"><B>'.$ProgressText.'</B></div>
 					</div>
 				</div>
 				<hr>
 			</div>';
 		}
-
 		echo $List;
-	}else{
-		echo '<div class="alert alert-warning text-center" role="alert">'.$SB['zero_habbits'].'</div>';
-	}
+	}else echo '<div class="alert alert-warning text-center" role="alert">'.$SB['zero_habbits'].'</div>';
 ?>

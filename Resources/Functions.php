@@ -245,14 +245,29 @@
         return $return;
     }
 
-    function DryPlant($Connect, $UserID){
+    function DryPlant($Connect, $UserID, $WaterID){
         $result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
     	$row = $result->fetch_assoc();
-		$Min_water = $row['Min_water'];
+        $Min_water = $row['Min_water'];
 
-        $water=0; //suma wypitej wody w danym dniu
-        if($water<$Min_water/2) echo 'sucho';
-        else echo 'normalne';
+        $Water = GetWater($Connect, $UserID, $WaterID);
+        if($Water<$Min_water/2) $return = "S";
+        else $return = "N";
+
+        return $return;
+    }
+
+    function GetWater($Connect, $UserID, $WaterID){
+        $DayNow = date("d");
+		$MonthNow = date("m");
+		$YearNow = date("Y");
+        
+        $result = mysqli_query($Connect, "SELECT * FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$WaterID' AND `UserID` = '$UserID'");
+        while($row=mysqli_fetch_array($result)){
+            $Water += $row['Water'];
+        }
+
+        return $Water;
     }
 
 ?>

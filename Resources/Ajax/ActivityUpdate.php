@@ -58,7 +58,7 @@
 		}
 	}
 
-    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), $Series)");
+    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), $Series, 0)");
 
     PlantLevel($Connect, $UserID);
 
