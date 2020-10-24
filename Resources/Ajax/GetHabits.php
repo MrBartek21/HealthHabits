@@ -16,10 +16,11 @@
 			$result2 = mysqli_query($Connect, "SELECT * FROM historyhabits WHERE UserID='$UserID' AND HabitsID='$HabitsID' ORDER BY ID DESC");
     		$row = $result2->fetch_assoc();
 			$UpdateTime = $row['UpdateTime'];
+			$Series = $row['Series'];
 
 			if($UpdateTime==""){
 				$UpdateTime = $SB['no_update'];
-				$Series = 0;
+				$Series = 1;
 				$Precent = 0;
 			}else{
 				$timestamp = strtotime($UpdateTime);
@@ -43,7 +44,7 @@
 							$Series = 0;
 							$Precent = 0;
 						}else{
-							$Series = 1;
+							$Series = $Series + 1;
 							$Precent = 100;
 						}
 					}
@@ -53,6 +54,7 @@
 			$result2 = mysqli_query($Connect, "SELECT * FROM habits WHERE ID='$HabitsID'");
     		$row = $result2->fetch_assoc();
 			$Name = $row['Name'];
+			$HabitsID2 = $row['ID'];
 			$Type = $row['Type'];
 			$Color = $row['Color'];
 			$Icon = $row['Icon'];
@@ -69,10 +71,14 @@
 				$Pointer = 'pointer';
 				$Onclick = 'data-toggle="modal" data-target="#UpdateActivity"';
 			}else{
-				if($Series==1){
+				$result4 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$HabitsID2' AND `UserID` = '$UserID' ORDER BY ID DESC");
+				$row = $result4->fetch_assoc();
+				$Count = $row['COUNT(*)'];
+
+				if($Count==1){
 					if($HabitsID==$IDWater){
 						$Pointer = 'pointer';
-						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.')"';
+						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')"';
 
 						$result3 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$IDWater' AND `UserID` = '$UserID'");
 						$row = $result3->fetch_assoc();
@@ -85,17 +91,10 @@
 					
 				}else{
 					$Pointer = 'pointer';
-					$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.')"';
+					$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')"';
 				}
 				
 			}
-
-			/*if($Precent>=50 && $Precent<75) $ProgressBar = "yellow";
-			elseif($Precent>=75 && $Precent<99) $ProgressBar = "blue";
-			elseif($Precent>99) $ProgressBar = "green";
-			else $ProgressBar = "red";
-
-			$ProgressBar = "#da9788";*/
 
 			$List .= '
 			<div class="row">

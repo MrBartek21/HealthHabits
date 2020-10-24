@@ -30,17 +30,39 @@
         $UserLastLogin = $row['LastLogin'];
         
         //Persona Info
-		//$result = mysqli_query($Connect, "SELECT * FROM persona WHERE UserID='$UserID'");
-		//$row = $result->fetch_assoc();
-		//$Weight = $row['Weight'];
-        //$Height = $row['Height'];
-        
         $result = mysqli_query($Connect, "SELECT * FROM historypersona WHERE UserID='$UserID' LIMIT 10");
 		while($row=mysqli_fetch_array($result)){
             $Weight = $row['Weight'];
             $Height = $row['Height'];
             $Date = $row['Date'];
             $WeightTable .= "['$Date', $Weight],";
+        }
+
+        $result = mysqli_query($Connect, "SELECT * FROM habits");
+		while($row=mysqli_fetch_array($result)){
+            $HabitsID = $row['ID'];
+            $HabitsName = $row['Name'];
+            $Color = $row['Color'];
+            $Icon = $row['Icon'];
+
+            $result2 = mysqli_query($Connect, "SELECT * FROM historyhabits WHERE HabitsID='$HabitsID' ORDER BY ID DESC");
+		    $row = $result2->fetch_assoc();
+            $Series = $row['Series'];
+            $UpdateTime = $row['UpdateTime'];
+
+            if($Series!=""){
+                if($Series==1) $Series = $Series." dzień";
+                else $Series = $Series." dni";
+
+                $Seria .= '
+                <p class="card-text"><figure class="figure">
+                    <span class="fa-stack fa-2x figure-img">
+                        <i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.';"></i>
+                        <i class="'.$Icon.' fa-stack-1x"></i>
+                     </span>
+                    <span class="figure-img rounded">'.$HabitsName.': <B>'.$Series.'</B></span>
+                </figure></p>';
+            }
         }
 	}else{
 		header('Location: login.php');
@@ -167,8 +189,7 @@
                             <div class="card card-curved-lg text-dark p-4" style="box-shadow: 0px 0px 20px 20px #ffffff82; border: none !important; background-color: #ffffff82 !important;">
                                 <div class="card-block">
                                     <h4 class="card-title text-center">Poziom wytrwalosci</h4>
-                                    <p class="card-text"><?php echo 'Wzrost: <B>'.$Weight.'</B>'; ?></p>
-                                    <p class="card-text"><?php echo 'Waga: <B>'.$Height.'</B>'; ?></p>
+                                    <?php echo $Seria; ?>
                                 </div>
                             </div>
                         </div>

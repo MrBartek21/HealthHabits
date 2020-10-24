@@ -244,9 +244,9 @@
                 });
 			}
 
-			function UpdateHabit(HabitsID, UserID){
+			function UpdateHabit(HabitsID, UserID, Series){
                 $(document).ready(function(){
-                    $.get('Resources/Ajax/UpdateHabit.php', {HabitsID: HabitsID, UserID: UserID}, function(data){
+                    $.get('Resources/Ajax/UpdateHabit.php', {HabitsID: HabitsID, UserID: UserID, Series: Series}, function(data){
 						console.log(data);
                     });
                 });

@@ -32,7 +32,33 @@
     $Connect->query("UPDATE persona SET SumKCAL='$Kactivity', Score=Score+'$pkt', CPM='$CPM', PAL='$PAL' WHERE UserID='$UserID'");
     $Connect->query("INSERT INTO useractivity VALUES (NULL, '$UserID', '$ActivityID', '$Time', '$kcal', now())");
 
-    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now())");
+    $result2 = mysqli_query($Connect, "SELECT * FROM historyhabits WHERE UserID='$UserID' AND HabitsID='$HabitsID' ORDER BY ID DESC");
+    $row = $result2->fetch_assoc();
+	$UpdateTime = $row['UpdateTime'];
+	$Series = $row['Series'];
+
+	if($UpdateTime=="") $Series = 1;
+	else{
+		$timestamp = strtotime($UpdateTime);
+		$UpdateDay = date('d', $timestamp);
+        $UpdateMonth = date('m', $timestamp);
+        $UpdateYear = date('Y', $timestamp);
+		
+		$DayNow = date("d");
+		$MonthNow = date("m");
+		$YearNow = date("Y");
+	
+        if($YearNow-$UpdateYear>0) $Series = 0;
+        else{
+			if($MonthNow-$UpdateMonth>0) $Series = 0;
+			else{
+                if($DayNow-$UpdateDay>0) $Series = 0;
+                else $Series = $Series + 1;
+			}
+		}
+	}
+
+    $Connect->query("INSERT INTO historyhabits VALUES (NULL, '$UserID', '$HabitsID', now(), $Series)");
 
     if($Sex=='K') echo '<div class="alert alert-success text-center" role="alert">'.$SB['activity_updated_k'].'</div>';
     else echo '<div class="alert alert-success text-center" role="alert">'.$SB['activity_updated_m'].'</div>';
