@@ -1,13 +1,31 @@
 <?php
-    $tab = ['a','b','c','d','e','f','g'];
-    $x=97;
-    for($i=0; $i<count($tab); $i++){
-        $tasocName["$tab[$i]"] = $x;
-        $x++;
+    function size_plant(){
+        $lvl=0;//z persony
+        if($lvl <10 )echo"nasionko";
+        elseif($lvl>=10 && $lvl <25)echo "mała";
+        else echo 'duża';
     }
-    while( list($klucz, $wartosc) = each( $tasocName) ){
-        echo "$klucz => $wartosc<BR>";
+    function dry_plant(){
+        
+        $water=0 //suma wypitej wody w danym dniu
+        $min_water=1800 //z persony
+        if($water<$min_water/2)echo 'sucho';
+        else echo 'normalne';
+        
     }
+    function Plant_level(){
+        //wykonywać co każde dodawanie pkt
+        $score=0;//z persony
+        $lvl = intval($score/25);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -54,11 +54,9 @@
 			$result2 = mysqli_query($Connect, "SELECT * FROM habits WHERE ID='$HabitsID'");
     		$row = $result2->fetch_assoc();
 			$Name = $row['Name'];
-			$HabitsID2 = $row['ID'];
 			$Type = $row['Type'];
 			$Color = $row['Color'];
 			$Icon = $row['Icon'];
-			//$ColorDarker = adjustBrightness($Color, -40);
 
 			$result3 = mysqli_query($Connect, "SELECT * FROM habits WHERE Name='Woda'");
 			$row = $result3->fetch_assoc();
@@ -71,11 +69,11 @@
 				$Pointer = 'pointer';
 				$Onclick = 'data-toggle="modal" data-target="#UpdateActivity"';
 			}else{
-				$result4 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$HabitsID2' AND `UserID` = '$UserID' ORDER BY ID DESC");
+				$result4 = mysqli_query($Connect, "SELECT COUNT(*) FROM `historyhabits` WHERE `UpdateTime` LIKE '%$YearNow-$MonthNow-$DayNow%' AND `HabitsID` = '$HabitsID' AND `UserID` = '$UserID' ORDER BY ID DESC");
 				$row = $result4->fetch_assoc();
 				$Count = $row['COUNT(*)'];
 
-				if($Count==1){
+				if($Count>=1){
 					if($HabitsID==$IDWater){
 						$Pointer = 'pointer';
 						$Onclick = 'onClick="UpdateHabit('.$HabitsID.', '.$UserID.', '.$Series.')"';
@@ -106,9 +104,9 @@
 						</span>
 						<B class="figure-img rounded">'.$Name.'</B>
 					</figure>
-					<div class="progress" style="margin-bottom: 25px; border: solid 2px #da9788; background-color: #ffc5bf">
+					<div class="progress">
 						<div class="progress-bar text-dark" role="progressbar" aria-valuenow="'.$Precent.'"
-						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%; background-color: #da9788;"><B>'.$Precent.'%</B></div>
+						aria-valuemin="0" aria-valuemax="100" style="width:'.$Precent.'%;"><B>'.$Precent.'%</B></div>
 					</div>
 				</div>
 				<hr>

@@ -21,6 +21,6 @@
         <input type="hidden" name="HabitsID" value="'.$IDHabits.'" id="HabitsID"><br />';
 	}
 	
-	if($Result=="") echo '<span class="text-center" style="padding: 5px;">Nie znaleziono takiej aktywności</span>';
+	if($Result=="") echo '<span class="text-center" style="padding: 5px;">'.$SB['not_found'].'</span>';
 	else echo $Result;
 ?>

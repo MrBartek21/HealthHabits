@@ -41,27 +41,34 @@
         $result = mysqli_query($Connect, "SELECT * FROM habits");
 		while($row=mysqli_fetch_array($result)){
             $HabitsID = $row['ID'];
-            $HabitsName = $row['Name'];
             $Color = $row['Color'];
             $Icon = $row['Icon'];
 
-            $result2 = mysqli_query($Connect, "SELECT * FROM historyhabits WHERE HabitsID='$HabitsID' ORDER BY ID DESC");
+            $result2 = mysqli_query($Connect, "SELECT Series FROM historyhabits WHERE HabitsID='$HabitsID' ORDER BY ID DESC");
 		    $row = $result2->fetch_assoc();
             $Series = $row['Series'];
-            $UpdateTime = $row['UpdateTime'];
 
             if($Series!=""){
-                if($Series==1) $Series = $Series." dzień";
-                else $Series = $Series." dni";
+                if($Series==1) $Series2 = $Series." dzień";
+                else $Series2 = $Series." dni";
 
                 $Seria .= '
-                <p class="card-text"><figure class="figure">
-                    <span class="fa-stack fa-2x figure-img">
-                        <i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.';"></i>
-                        <i class="'.$Icon.' fa-stack-1x"></i>
-                     </span>
-                    <span class="figure-img rounded">'.$HabitsName.': <B>'.$Series.'</B></span>
-                </figure></p>';
+                <p class="card-text">
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x" style="color: #'.$Color.';"></i>
+                                <i class="'.$Icon.' fa-stack-1x"></i>
+                            </span>
+                        </div>
+                        <div class="col-9"><B>'.$Series2 .'</B>
+                            <div class="progress">
+                                <div class="progress-bar text-dark" role="progressbar" aria-valuenow="'.$Series.'"
+                                aria-valuemin="0" aria-valuemax="100" style="width:'.$Series.'%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </p><hr />';
             }
         }
 	}else{
@@ -134,24 +141,6 @@
         </script>
 	</head>
 	<body>
-		<!-- AddHAbits -->
-		<div class="modal fade" id="AddHabits" tabindex="-1" role="dialog" aria-labelledby="AddHabitsLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="AddHabitsLabel"><?php echo $SB['habits_add']?></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body">
-						<?php GetHabbits($Connect, $UserID);?>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $SB['close_btn']?></button>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<!-- Page Content -->
 		<div class="container">
 			<div class="row">

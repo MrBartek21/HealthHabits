@@ -67,9 +67,19 @@
         <title><?php echo $SB['main_page'].' - '.$Title;?></title>
 	</head>
 	<body>
-		<!-- Navigation -->
+		<!-- Navigation --> <!-- Not working -->
 		<!--<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
-			<div class="container" id="DailyHabits"></div>
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-6" id="DailyHabits"></div>
+					<div class="col-6 text-right">
+						<span class="fa-stack fa-2x" data-toggle="modal" data-target="#AddHabits">
+							<i class="fa fa-circle fa-stack-2x" style="color: #6e9f7f;"></i>
+							<i class="fas fa-plus fa-stack-1x"></i>
+						</span>
+					</div>
+				</div>
+			</div>
 		</nav>-->
 
 		<!-- AddHAbits -->

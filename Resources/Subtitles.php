@@ -2,6 +2,7 @@
     $SB['login_page'] = "Konto";
     $SB['main_page'] = "Strona główna";
     $SB['profil_page'] = "Profil";
+    $SB['game_page'] = "Roślina";
 
 
     $SB['close_btn'] = "Zamknij";
@@ -59,7 +60,6 @@
 
 
     //Ajax
-    //$SB['email'] = "Email";
     //GetHabits.php
     $SB['zero_habbits'] = "Nie masz żadnych nawyków. Dodaj pare przyciskiem na dole.";
     $SB['no_update'] = "Brak aktywności.";
@@ -72,10 +72,9 @@
     //ActivityUpdate.php
     $SB['activity_updated_m'] = "Brawo! Wykonałeś aktywność fizyczną";
     $SB['activity_updated_k'] = "Brawo! Wykonałaś aktywność fizyczną";
+
+    //LiveSearch.php
+    $SB['not_found'] = "Nie znaleziono takiej aktywności";
+
     
-
-
-
-
-   // print_r($SB);
 ?>
