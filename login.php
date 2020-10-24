@@ -58,7 +58,7 @@
         
         <title><?php echo $SB['login_page'].' - '.$Title;?></title>
 	</head>
-	<body>
+	<body style="padding-top: 90px;">
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-navbar">
 			<div class="container">
