@@ -270,4 +270,18 @@
         return $Water;
     }
 
+    function GetLocWea($OWMKey){
+        $geo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
+
+        $latitude = $geo['geoplugin_latitude'];
+        $longitude = $geo['geoplugin_longitude'];
+
+        $json = file_get_contents('http://api.openweathermap.org/data/2.5/weather?lat='.$latitude.'&lon='.$longitude.'&APPID='.$OWMKey);
+        $data = json_decode($json, true);
+
+        $Temperature = $data['main']['temp'] - 273.15;
+        $Temperature = round($Temperature,2);
+        $Humidity = $data['main']['humidity'];
+    }
+
 ?>
