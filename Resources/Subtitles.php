@@ -37,6 +37,11 @@
     $SB['sex_k'] = "Kobieta";
 
 
+    //Profil.php
+    $SB['weight_lvl'] = "Zmiana wagi: ";
+    $SB['perseverance_lvl'] = "Poziom wytrwałości:";
+
+
     //Functions.php
     $SB['error1'] = "Błąd serwera! Przepraszamy za niedogodności i prosimy o wizytę w innym terminie!";
     $SB['error2'] = "Informacje dla programistów:";

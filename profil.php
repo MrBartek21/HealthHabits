@@ -164,20 +164,20 @@
 
                         <div class="col-sm-12" style="margin-bottom: 20px;">
                             <div class="card-block">
-                                <p class="card-text"><?php echo 'Waga: <B>'.$Weight.' kg</B>'; ?></p>
-                                <p class="card-text"><?php echo 'Wzrost: <B>'.$Height.' cm</B>'; ?></p>
+                                <p class="card-text"><?php echo $SB['weight'].': <B>'.$Weight.' kg</B>'; ?></p>
+                                <p class="card-text"><?php echo $SB['height'].': <B>'.$Height.' cm</B>'; ?></p>
                             </div>
                         </div>
 
                         <div class="col-sm-12" style="margin-bottom: 50px;">
-                            <h4 class="card-title text-center"><B>Zmiana wagi:</B></h4>
+                            <h4 class="card-title text-center"><B><?php echo $SB['weight_lvl']; ?></B></h4>
                             <div id="chart_div"></div>
                         </div>
 
                         <div class="col-sm-12">
                             <div class="card card-curved-lg text-dark p-4" style="box-shadow: 0px 0px 20px 20px #ffffff82; border: none !important; background-color: #ffffff82 !important;">
                                 <div class="card-block">
-                                    <h4 class="card-title text-center">Poziom wytrwalosci</h4>
+                                    <h4 class="card-title text-center"><?php echo $SB['perseverance_lvl']; ?></h4>
                                     <?php echo $Seria; ?>
                                 </div>
                             </div>

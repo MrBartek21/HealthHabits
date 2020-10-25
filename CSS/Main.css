@@ -34,34 +34,34 @@ body{
 	padding-top: 20px;
 	padding-bottom: 110px;
 	color: #424242;
-	background-color: #ffdbcc;
+	background-color: #ECEAE4;
 
 	font-family:'Caviar Dreams';
 	font-weight: normal;
 }
 
-.bg-navbar{background-color: #da9788;}
-.bg-footer{background-color: #da9788;}
-.bg-form{background-color: #FCB9AA;}
+.bg-navbar{background-color: #cce2cb;}
+.bg-footer{background-color: #cce2cb;}
+.bg-form{background-color: #cce2cb;}
 
 .fa-stack-1x{color: #000;}
-.fa-stack-2x{color: #b87566;}
+.fa-stack-2x{color: #8fcaca;}
 
-.btn-form:hover{background-color: #b97566;}
+.btn-form:hover{background-color: #8fcaca;}
 
 .btn-form{
 	width: 100% !important;
-	background-color: #da9788;
+	background-color: #b6cfb6;
 }
 
 .progress{
 	margin-top: 25px !important;
-	border: solid 2px #da9788;
-	background-color: #ffc5bf;
+	border: solid 2px #b6cfb6;
+	background-color: #ECEAE4;
 	width: 100%;
 }
 
-.progress-bar{background-color: #da9788;}
+.progress-bar{background-color: #b6cfb6;}
 
 .form-100{
 	margin-bottom: 20px;

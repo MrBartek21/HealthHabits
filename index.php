@@ -67,7 +67,7 @@
         <title><?php echo $SB['main_page'].' - '.$Title;?></title>
 	</head>
 	<body>
-		<!-- Navigation --> <!-- Not working -->
+		<!-- Navigation --> <!-- Not working  -->
 		<!--<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #FCB9AA !important; margin-bottom: 15px;">
 			<div class="container">
 				<div class="row text-center">
